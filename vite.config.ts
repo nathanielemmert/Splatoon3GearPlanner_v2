@@ -7,5 +7,8 @@ export default defineConfig({
     plugins: [
         svelte(),
         wasm(),
-    ]
+    ],
+    build: {
+        target: 'esnext'
+    }
 })
