@@ -19,7 +19,7 @@
 
     {#each abilities as ability}
         <img
-                src={`https://leanny.github.io/splat3/images/skill/${ability_filenames[ability]}.webp`} alt=""
+                src={`https://leanny.github.io/splat3/images/skill/${ability_filenames[ability]}.png`} alt=""
                 on:click|stopPropagation={()=>{abilityId=ability;showPopup=false;console.log("NEW ABILITY",ability,abilityId)}}
         />
     {/each}

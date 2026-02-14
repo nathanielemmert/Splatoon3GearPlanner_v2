@@ -1,9 +1,9 @@
 <script lang="ts">
     import {LeannySubAbility, type SingleGearResult, SubAbility} from "wasm-splatoon-gear-checker";
     import InputDesiredAbilityCombo from "./InputDesiredAbilityCombo.svelte";
-    import SubAbilityImage from "../../../../ImageTypes/SubAbilityImage.svelte";
+    //import SubAbilityImage from "../../../../ImageTypes/SubAbilityImage.svelte";
     import {type OrderedMap} from "immutable";
-    import InputDesiredAbilities from "../../../../../lib/InputDesiredAbilities.svelte";
+    //import InputDesiredAbilities from "../../../../../lib/InputDesiredAbilities.svelte";
 
     //TODO: make selected ability have outline/ highlighted.
 
