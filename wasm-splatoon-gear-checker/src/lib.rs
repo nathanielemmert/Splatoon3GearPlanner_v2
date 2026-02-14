@@ -19,7 +19,7 @@ use std::str::FromStr;
 use serde::{Deserialize, Serialize};
 use ts_rs::TS;
 use tsify::{declare, Tsify};
-use wasm_bindgen::JsObject;
+// use wasm_bindgen::JsObject;
 use wasm_bindgen::prelude::*;
 use wasm_bindgen_test::__rt::log;
 use wasm_bindgen_test::console_log;
