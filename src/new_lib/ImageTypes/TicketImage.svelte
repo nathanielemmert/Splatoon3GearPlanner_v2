@@ -16,7 +16,7 @@
         <!-- svelte-ignore a11y-missing-attribute -->
         <img class="ticket-icon"src="https://cdn.wikimg.net/en/splatoonwiki/images/c/c3/S2_Icon_Drink_Ticket.png"/>
         <!-- svelte-ignore a11y-missing-attribute -->
-        <img class="ability"src={`https://leanny.github.io/splat3/images/skill/${ability_filenames[abilityId]}.webp`}/>
+        <img class="ability"src={`https://leanny.github.io/splat3/images/skill/${ability_filenames[abilityId]}.png`}/>
     </div>
 {/if}
 

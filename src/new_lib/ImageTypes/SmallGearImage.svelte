@@ -11,7 +11,7 @@
 
 {#if gear_filename}
     <!-- svelte-ignore a11y-missing-attribute -->
-    <img src={`https://leanny.github.io/splat3/images/gear/${gear_filename}.webp`}/>
+    <img src={`https://leanny.github.io/splat3/images/gear/${gear_filename}.png`}/>
 {/if}
 
 <style>

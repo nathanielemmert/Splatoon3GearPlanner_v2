@@ -6,7 +6,7 @@
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->
-<img src={`https://leanny.github.io/splat3/images/skill/${ability_filenames[abilityId]}.webp`}/>
+<img src={`https://leanny.github.io/splat3/images/skill/${ability_filenames[abilityId]}.png`}/>
 
 <style>
     img{

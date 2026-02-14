@@ -26,7 +26,7 @@
      tabindex="0"
 >
     <img
-            src={`https://leanny.github.io/splat3/images/skill/${ability_filename}.webp`} alt=""
+            src={`https://leanny.github.io/splat3/images/skill/${ability_filename}.png`} alt=""
     />
     <span class="my_tooltiptext" style={(showPopup)?"visibility: visible;":""}>
         <InputSubAbilityTooltip bind:abilityId bind:showPopup {allowBlankAbility}/>

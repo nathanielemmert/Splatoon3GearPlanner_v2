@@ -13,7 +13,7 @@
 {#if gear_filename}
     <!-- svelte-ignore a11y-missing-attribute -->
     <figure>
-        <img src={`https://leanny.github.io/splat3/images/gear/${gear_filename}.webp`}/>
+        <img src={`https://leanny.github.io/splat3/images/gear/${gear_filename}.png`}/>
         <figcaption>{gearNameParams[gear_filename??""]}</figcaption>
     </figure>
 {/if}
