@@ -14,7 +14,7 @@
     import type {GearPurifyCategory} from "../types/gearTypes";
     import {createGearPurifyCategoryMap} from "../types/gearTypes";
     import {abilityNameParams} from "../../assets/translationParams";
-    import {SubAbility} from "wasm-splatoon-gear-checker";
+    import {type SubAbility} from "wasm-splatoon-gear-checker";
     import DisplayAllGearRows from "../DisplayAllGearRows/DisplayAllGearRows.svelte";
     import GearCategoryName from "../ImageTypes/GearCategoryName/GearCategoryName.svelte";
     import type {GearInputState} from "../stores/createGear";

@@ -8,7 +8,7 @@
     import DisplaySingleGear from "../DisplaySingleGear/DisplaySingleGear.svelte";
     import InputGearPurifyCategory from "../DisplaySingleGear/SingleGearInputs/InputGearPurifyCategory.svelte";
     import {createGearPurifyCategoryMap, type GearPurifyCategory} from "../types/gearTypes";
-    import {SubAbility} from "wasm-splatoon-gear-checker";
+    import {type SubAbility} from "wasm-splatoon-gear-checker";
     import InputGearPurifyCategoryNostore
         from "../DisplaySingleGear/SingleGearInputs/InputGearPurifyCategoryNostore.svelte";
     import GearAbilitiesTable from "../DisplaySingleGear/GearAbilitiesTable/GearAbilitiesTable.svelte";

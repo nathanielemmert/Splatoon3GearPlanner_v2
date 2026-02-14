@@ -1,8 +1,8 @@
 import type { GearParam } from "../new_lib/types/typesParams";
 
-import _gearInfoHead from "../assets/leanny-data/mush/600/GearInfoHead.json";
-import _gearInfoClothes from "../assets/leanny-data/mush/600/GearInfoClothes.json";
-import _gearInfoShoes from "../assets/leanny-data/mush/600/GearInfoShoes.json";
+import _gearInfoHead from "../assets/leanny-data/mush/1101/GearInfoHead.json";
+import _gearInfoClothes from "../assets/leanny-data/mush/1101/GearInfoClothes.json";
+import _gearInfoShoes from "../assets/leanny-data/mush/1101/GearInfoShoes.json";
 
 
 let gearInfoHead: {[gearId:string]:GearParam}={};
