@@ -1,3 +1,5 @@
+<!-- @migration-task Error while migrating Svelte code: `<tr>` cannot be a child of `<table>`. `<table>` only allows these children: `<caption>`, `<colgroup>`, `<tbody>`, `<thead>`, `<tfoot>`, `<style>`, `<script>`, `<template>`. The browser will 'repair' the HTML (by moving, removing, or inserting elements) which breaks Svelte's assumptions about the structure of your components.
+https://svelte.dev/e/node_invalid_placement -->
 <!-- @migration-task Error while migrating Svelte code: `<tr>` is invalid inside `<table>` -->
 <script lang="ts">
     import SubAbilityImages from "./ImageTypes/SubAbilityImages.svelte";
@@ -35,7 +37,7 @@
             {hidden  ? "Show" : "Hide"}
         </button>
     </div>
-    <table style={hidden ? "display:none" : ""}>
+    <table style={hidden ? "display:none" : ""}><tbody>
         {#each desiredAbilities as abilityCombo, listIndex}
             <tr>
                 <td style="text-align: right">
@@ -55,7 +57,7 @@
             </td>
 
         </tr>
-    </table>
+    </tbody></table>
 </div>
 
 <style>

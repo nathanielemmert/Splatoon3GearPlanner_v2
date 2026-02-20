@@ -30,14 +30,14 @@
         {@const gearTypesAlreadyCreated = GearType.map(gearType=>allGearCategoriesMap?.pure?.get(gearType)?.get(a)==null?0:1).reduce((a, b) => a + b, 0)}
         {@const subAbilityAlreadyCreated = gearTypesAlreadyCreated > 0}
         {@const subAbilityAllCreated = gearTypesAlreadyCreated >= 3}
-        {#if (alreadyCreated && subAbilityAlreadyCreated) || (!alreadyCreated &&!subAbilityAllCreated)    }
+        {#if (alreadyCreated && subAbilityAlreadyCreated) || (!alreadyCreated &&!subAbilityAllCreated)}
             <ListGroupItem tag="li" action  style="padding-top: 5px; padding-bottom: 5px;" color={subAbilityActive?"secondary":""}>
                 <SmallSubAbilityImages abilityIds={[a,a,a]}/>
                 <ListGroup horizontal style="display: inline-flex">
                     {#each GearType as g}
                         {@const gearTypeActive = subAbilityActive && g==gearType}
                         {@const gearTypeAlreadyCreated = allGearCategoriesMap?.pure?.get(g)?.get(a)!=null}
-                        {#if (alreadyCreated && gearTypeAlreadyCreated) || (!alreadyCreated &&!gearTypeAlreadyCreated) }
+                        {#if (alreadyCreated && gearTypeAlreadyCreated) || (!alreadyCreated &&!gearTypeAlreadyCreated)}
                             <ListGroupItem tag="button"
                                            active={gearTypeActive}
                                            style="padding: 2px;  font-size: 15px"

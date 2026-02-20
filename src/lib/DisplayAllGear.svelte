@@ -1,3 +1,5 @@
+<!-- @migration-task Error while migrating Svelte code: `<tr>` cannot be a child of `<table>`. `<table>` only allows these children: `<caption>`, `<colgroup>`, `<tbody>`, `<thead>`, `<tfoot>`, `<style>`, `<script>`, `<template>`. The browser will 'repair' the HTML (by moving, removing, or inserting elements) which breaks Svelte's assumptions about the structure of your components.
+https://svelte.dev/e/node_invalid_placement -->
 <!-- @migration-task Error while migrating Svelte code: `<tr>` is invalid inside `<table>` -->
 <script lang="ts">
     import DisplaySingleGear from "./DisplaySingleGear.svelte";
@@ -155,14 +157,15 @@
 
 
 <table>
-    <tr>
+    <thead><tr>
         <th>Select</th>
         <th>Gear</th>
         <th>Abilities</th>
         <th>Allow Chunks?</th>
         <th>Possible Gear Abilities</th>
-    </tr>
+    </tr></thead>
 
+    <tbody>
     {#each allDisplayedGear as {inpState:{selectedForPurify,hideResultTable},gearInfo:{gearId,gearType},categoryState: {category},singleGearResult}, listIndex (gearType+gearId)}
         {@const categoryCollapsed = gearCategories[category].collapsed}
         {#if listIndex in categoryStarts}
@@ -183,6 +186,7 @@
 
 
     {/each}
+    </tbody>
 
 
 </table>

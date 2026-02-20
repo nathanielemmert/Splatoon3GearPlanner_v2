@@ -1,5 +1,7 @@
 <!-- @migration-task Error while migrating Svelte code: `<tr>` is invalid inside `<table>` -->
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
     import {LeannySubAbility, SubAbility} from "wasm-splatoon-gear-checker";
     import InputDesiredAbilityCombo from "./InputDesiredAbilityCombo.svelte";
     import SubAbilityImage from "../../ImageTypes/SubAbilityImage.svelte";
@@ -7,13 +9,20 @@
 
 
 
-    //TODO: make selected ability have outline/ highlighted.
+    
 
-    export let desired_abilities:SubAbility[][]
+    interface Props {
+        //TODO: make selected ability have outline/ highlighted.
+        desired_abilities: SubAbility[][];
+    }
+
+    let { desired_abilities = $bindable() }: Props = $props();
     const blank_ability_combo = [LeannySubAbility.None, LeannySubAbility.None, LeannySubAbility.None] as const;
 
-    let next_ability_combo = [...blank_ability_combo];
-    $:console.log(desired_abilities)
+    let next_ability_combo = $state([...blank_ability_combo]);
+    run(() => {
+        console.log(desired_abilities)
+    });
 
     function arraysEqual(a, b) {
         if (a === b) return true;
