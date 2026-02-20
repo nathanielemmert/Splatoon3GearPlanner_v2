@@ -15,8 +15,10 @@
       "checkJs": true,
       "isolatedModules": true,
       "strict": true,
+      "baseUrl": "./",
       "paths": {
-        "wasm-splatoon-gear-checker": ["wasm-splatoon-gear-checker/pkg"],
+        "wasm-splatoon-gear-checker": ["./wasm-splatoon-gear-checker/pkg"],
+        "@/*": ["./src/*"]
     
       }
     },

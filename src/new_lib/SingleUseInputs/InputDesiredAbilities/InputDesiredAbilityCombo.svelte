@@ -69,8 +69,8 @@
     onfocusout={onClickAway}
 
 >
-    {#each abilityIds as abilityId}
-        <InputSingleAbility bind:abilityId={abilityId} {allowBlankAbility}/>
+    {#each abilityIds as abilityId,i}
+        <InputSingleAbility bind:abilityId={abilityIds[i]} {allowBlankAbility}/>
     {/each}
 </td>
 <td class:hidden={!currentlyEditing}>

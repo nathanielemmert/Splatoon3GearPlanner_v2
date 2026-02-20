@@ -57,8 +57,8 @@
         </CardHeader>
 
         <CardBody>
-            {#each allGearCategories as gearCategory}
-                <DisplaySingleGearCategory bind:gearCategory bind:allDisplayedGear  bind:allGearCategories bind:allGearCategoriesMap {global_desired_abilities}/>
+            {#each allGearCategories as gearCategory,i}
+                <DisplaySingleGearCategory bind:gearCategory={allGearCategories[i]} bind:allDisplayedGear  bind:allGearCategories bind:allGearCategoriesMap {global_desired_abilities}/>
             {/each}
         </CardBody>
     </Card>

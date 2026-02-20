@@ -336,12 +336,12 @@
         <tbody bind:this={contents} class="tbody" role="rowgroup">
         {#if fixedColWidth}
             <slot name="tbody" item={items[0]} index={-1}>
-                Missing Table Row
+                <tr><td>Missing Table Row</td></tr>
             </slot>
         {/if}
         {#each visible as item}
             <slot name="tbody" item={item.data} index={item.index}>
-                Missing Table Row
+                <tr><td>Missing Table Row</td></tr>
             </slot>
         {/each}
         </tbody>

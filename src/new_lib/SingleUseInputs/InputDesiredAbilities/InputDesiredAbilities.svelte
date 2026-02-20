@@ -59,7 +59,7 @@
 </script>
 
 
-<table>
+<table><tbody>
     {#each desired_abilities as ability_combo,index}
         <tr>
             <td>
@@ -68,10 +68,9 @@
             <InputDesiredAbilityCombo {ability_combo} onSubmit={onSubmit.bind(null,index)}/>
         </tr>
     {/each}
-
-    <tr>
+	<tr>
         <td></td>
         <InputDesiredAbilityCombo ability_combo={next_ability_combo} onSubmit={onAddNew}/>
     </tr>
 
-</table>
+</tbody></table>

@@ -2,7 +2,7 @@
     import {SubAbility, Ticket} from "wasm-splatoon-gear-checker";
     import {type GearSeedDatabase} from "./types/typesLeanny";
     import {createGearPurifyCategoryMap, type GearInfo, type GearPurifyCategory, GearType} from "./types/gearTypes";
-    import VirtualTable from 'svelte-virtual-table'
+    // import VirtualTable from 'svelte-virtual-table'
     import DisplayGearCategories from "./DisplayGearCategories/DisplayGearCategories.svelte";
     import PurifyAllGear from "./PurifyAllGear/PurifyAllGear.svelte";
     import {Progress} from "@sveltestrap/sveltestrap";
