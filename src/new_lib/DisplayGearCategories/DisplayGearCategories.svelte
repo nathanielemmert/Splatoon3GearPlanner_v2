@@ -15,7 +15,7 @@
     import AddPureCategory from "./AddPureGearCategory/AddPureCategory.svelte";
     import DisplaySingleGearCategory from "./DisplaySingleGearCategory.svelte";
     import {SubAbility} from "wasm-splatoon-gear-checker";
-    import type {GearInputState} from "../stores/createGear";
+    import type {GearInputState} from "../stores/createGear.svelte";
 
     interface Props {
         allGearCategories: GearPurifyCategory[];

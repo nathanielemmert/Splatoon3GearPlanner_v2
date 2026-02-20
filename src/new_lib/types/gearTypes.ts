@@ -3,7 +3,7 @@ import type {SingleGearResult, SubAbility} from "wasm-splatoon-gear-checker";
 import {type Brand, Gear} from "wasm-splatoon-gear-checker";
 import type {WasmGear} from "../../lib/types/types";
 import {OrderedMap} from "immutable";
-import type {GearInputState} from "../stores/createGear";
+import type {GearInputState} from "../stores/createGear.svelte.svelte";
 
 
 

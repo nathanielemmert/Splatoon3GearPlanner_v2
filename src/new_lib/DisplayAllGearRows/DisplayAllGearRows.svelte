@@ -4,7 +4,7 @@ https://svelte.dev/e/each_item_invalid_assignment -->
 
     import type {SubAbility} from "wasm-splatoon-gear-checker";
     import {createGearPurifyCategoryMap, type GearPurifyCategory} from "../types/gearTypes";
-    import type {GearInputState} from "../stores/createGear";
+    import type {GearInputState} from "../stores/createGear.svelte";
     import DisplaySingleGearRow from "./DisplaySingleGearRow.svelte";
 
     interface Props {

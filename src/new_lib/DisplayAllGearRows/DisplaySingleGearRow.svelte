@@ -14,7 +14,7 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
     import { run } from 'svelte/legacy';
 
 
-    import type {GearInputState} from "../stores/createGear";
+    import type {GearInputState} from "../stores/createGear.svelte";
     import GearImageAndAbilities from "../DisplaySingleGear/SingleGearInputs/GearImageAndAbilities.svelte";
     import InputHowFarToCheck from "../DisplaySingleGear/SingleGearInputs/InputHowFarToCheck.svelte";
     import HideResultTableButton from "../DisplaySingleGear/SingleGearInputs/HideResultTableButton.svelte";

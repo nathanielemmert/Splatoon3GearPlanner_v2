@@ -29,7 +29,7 @@
     import SmallSubAbilityImage from "../../ImageTypes/SmallSubAbilityImage.svelte";
     import SmallSubAbilityImages from "../../ImageTypes/SmallSubAbilityImages.svelte";
     import SelectPureCategory from "./SelectPureCategory.svelte";
-    import type {GearInputState} from "../../stores/createGear";
+    import type {GearInputState} from "../../stores/createGear.svelte";
     import {batch} from "@amadeus-it-group/tansu";
 
 

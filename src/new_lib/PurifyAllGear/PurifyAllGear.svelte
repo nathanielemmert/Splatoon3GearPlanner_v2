@@ -9,7 +9,7 @@ import {
     forcedTicketDepthLimit,
     globalHowFarToCheck,
     ticketDepthLimit
-} from "../stores/globalSettings";
+} from "../stores/globalSettings.svelte";
 import InputForceCheck from "../SingleUseInputs/InputForceCheck.svelte";
 import InputTicketDepthLimit from "../SingleUseInputs/InputTicketDepthLimit.svelte";
 

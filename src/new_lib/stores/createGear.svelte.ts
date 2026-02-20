@@ -6,7 +6,7 @@ import {Gear, type SubAbility} from "wasm-splatoon-gear-checker";
 import {OrderedMap} from "immutable";
 import {DEFAULT_ALLOWED_DRINKS} from "../types/helperFunctions";
 import {writable, derived, type StoreOptions} from "@amadeus-it-group/tansu"
-import {global_desired_abilities, globalHowFarToCheck, IMMUTABLE_STORE_OPTIONS} from "./globalSettings";
+import {global_desired_abilities, globalHowFarToCheck, IMMUTABLE_STORE_OPTIONS} from "./globalSettings.svelte";
 
 
 export type GearInputState = ReturnType<typeof createGear>;

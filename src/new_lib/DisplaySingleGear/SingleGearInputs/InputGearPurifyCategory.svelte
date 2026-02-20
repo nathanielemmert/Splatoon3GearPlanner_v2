@@ -20,7 +20,7 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
     } from "../../types/gearTypes";
     import {createGearPurifyCategoryMap} from "../../types/gearTypes";
     import {gearNameParams} from "../../../assets/translationParams";
-    import type {GearInputState} from "../../stores/createGear";
+    import type {GearInputState} from "../../stores/createGear.svelte";
     import * as uuid from "uuid"
     import {batch, type WritableSignal} from "@amadeus-it-group/tansu";
 
