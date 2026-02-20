@@ -1,5 +1,7 @@
 <!-- @migration-task Error while migrating Svelte code: `<thead>` cannot be a child of `<tbody>`. `<tbody>` only allows these children: `<tr>`, `<style>`, `<script>`, `<template>`. The browser will 'repair' the HTML (by moving, removing, or inserting elements) which breaks Svelte's assumptions about the structure of your components.
 https://svelte.dev/e/node_invalid_placement -->
+<!-- @migration-task Error while migrating Svelte code: `<thead>` cannot be a child of `<tbody>`. `<tbody>` only allows these children: `<tr>`, `<style>`, `<script>`, `<template>`. The browser will 'repair' the HTML (by moving, removing, or inserting elements) which breaks Svelte's assumptions about the structure of your components.
+https://svelte.dev/e/node_invalid_placement -->
 <!-- @migration-task Error while migrating Svelte code: `<tr>` cannot be a child of `<table>`. `<table>` only allows these children: `<caption>`, `<colgroup>`, `<tbody>`, `<thead>`, `<tfoot>`, `<style>`, `<script>`, `<template>`. The browser will 'repair' the HTML (by moving, removing, or inserting elements) which breaks Svelte's assumptions about the structure of your components.
 https://svelte.dev/e/node_invalid_placement -->
 <!-- @migration-task Error while migrating Svelte code: `<tr>` cannot be a child of `<table>`. `<table>` only allows these children: `<caption>`, `<colgroup>`, `<tbody>`, `<thead>`, `<tfoot>`, `<style>`, `<script>`, `<template>`. The browser will 'repair' the HTML (by moving, removing, or inserting elements) which breaks Svelte's assumptions about the structure of your components.
@@ -23,7 +25,7 @@ export let hideResultTable:boolean;
 
 {#if !hideResultTable}
     <table><tbody>
-        <thead>
+        <!-- <thead> -->
         <tr>
             <th>
                 <slot name="enable_all_global"/>
@@ -35,7 +37,7 @@ export let hideResultTable:boolean;
                 <slot name="show_all_global"/>
             </th>
         </tr>
-        </thead>
+        <!-- </thead> -->
 
         <tr class:hidden={!show_all_global}>
             <td></td>
@@ -54,7 +56,7 @@ export let hideResultTable:boolean;
         <slot name="enabledGlobalAbilities"/>
 
 
-        <thead>
+        <!-- <thead> -->
         <tr>
             <th>
                 <slot name="enable_all_local"/>
@@ -66,7 +68,7 @@ export let hideResultTable:boolean;
                 <slot name="show_all_local"/>
             </th>
         </tr>
-        </thead>
+        <!-- </thead> -->
         <slot name="InputLocalAbilities"/>
 
     </tbody></table>

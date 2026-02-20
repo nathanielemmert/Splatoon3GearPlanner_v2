@@ -1,5 +1,7 @@
 <!-- @migration-task Error while migrating Svelte code: Cannot reassign or bind to each block argument in runes mode. Use the array and index variables instead (e.g. `array[i] = value` instead of `entry = value`, or `bind:value={array[i]}` instead of `bind:value={entry}`)
 https://svelte.dev/e/each_item_invalid_assignment -->
+<!-- @migration-task Error while migrating Svelte code: Cannot reassign or bind to each block argument in runes mode. Use the array and index variables instead (e.g. `array[i] = value` instead of `entry = value`, or `bind:value={array[i]}` instead of `bind:value={entry}`)
+https://svelte.dev/e/each_item_invalid_assignment -->
 <!-- @migration-task Error while migrating Svelte code: `<tr>` cannot be a child of `<table>`. `<table>` only allows these children: `<caption>`, `<colgroup>`, `<tbody>`, `<thead>`, `<tfoot>`, `<style>`, `<script>`, `<template>`. The browser will 'repair' the HTML (by moving, removing, or inserting elements) which breaks Svelte's assumptions about the structure of your components.
 https://svelte.dev/e/node_invalid_placement -->
 <!-- @migration-task Error while migrating Svelte code: `<tr>` is invalid inside `<table>` -->
@@ -54,7 +56,7 @@ https://svelte.dev/e/node_invalid_placement -->
                     <button onclick={()=>{desiredAbilities.splice(listIndex,1);desiredAbilities=desiredAbilities;}}>Remove</button>
                 </td>
                 <td style="text-align: left"><div>
-                    <InputSubAbilities bind:abilityIds={abilityCombo} />
+                    <InputSubAbilities bind:abilityIds={desiredAbilities[listIndex]} />
                 </div></td>
             </tr>
         {/each}
