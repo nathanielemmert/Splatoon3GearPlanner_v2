@@ -10,6 +10,8 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
 https://svelte.dev/e/store_invalid_scoped_subscription -->
 <!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component
 https://svelte.dev/e/store_invalid_scoped_subscription -->
+<!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component
+https://svelte.dev/e/store_invalid_scoped_subscription -->
 <!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component -->
 <script lang="ts">
     import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from "@sveltestrap/sveltestrap";

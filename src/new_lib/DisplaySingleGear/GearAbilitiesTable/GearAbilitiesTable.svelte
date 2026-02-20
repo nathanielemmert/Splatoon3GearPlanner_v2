@@ -1,5 +1,6 @@
 <!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot (show_all_global to show_all_global_1) making the component unusable -->
 <!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot (show_all_global to show_all_global_1) making the component unusable -->
+<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot (show_all_global to show_all_global_1) making the component unusable -->
 <!-- @migration-task Error while migrating Svelte code: `<thead>` cannot be a child of `<tbody>`. `<tbody>` only allows these children: `<tr>`, `<style>`, `<script>`, `<template>`. The browser will 'repair' the HTML (by moving, removing, or inserting elements) which breaks Svelte's assumptions about the structure of your components.
 https://svelte.dev/e/node_invalid_placement -->
 <!-- @migration-task Error while migrating Svelte code: `<thead>` cannot be a child of `<tbody>`. `<tbody>` only allows these children: `<tr>`, `<style>`, `<script>`, `<template>`. The browser will 'repair' the HTML (by moving, removing, or inserting elements) which breaks Svelte's assumptions about the structure of your components.

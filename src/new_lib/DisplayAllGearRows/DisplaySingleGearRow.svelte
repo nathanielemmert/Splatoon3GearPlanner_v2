@@ -1,3 +1,5 @@
+<!-- @migration-task Error while migrating Svelte code: Identifier 'gearPurifyCategory' has already been declared
+https://svelte.dev/e/js_parse_error -->
 <!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component
 https://svelte.dev/e/store_invalid_scoped_subscription -->
 <!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component
@@ -52,7 +54,7 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
 
 
 
-    let gearPurifyCategory;
+
     // run(() => {
     //     ({
     //         gearInfo:{gear, gearId, gearType},
