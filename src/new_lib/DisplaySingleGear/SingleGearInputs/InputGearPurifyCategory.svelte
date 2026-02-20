@@ -1,5 +1,6 @@
+<!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component -->
 <script lang="ts">
-    import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from "sveltestrap";
+    import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from "@sveltestrap/sveltestrap";
     import type {
         GearPurifyCategory,
         GearPurifyCategoryId,

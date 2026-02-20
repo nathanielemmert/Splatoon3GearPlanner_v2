@@ -1,3 +1,4 @@
+<!-- @migration-task Error while migrating Svelte code: Text node is invalid inside `<tbody>` -->
 <script lang="ts">
     import {writable} from "@amadeus-it-group/tansu";
 
@@ -350,47 +351,4 @@
     </table>
 </svelte-virtual-table-viewport>
 
-<style type="text/css">
-    table {
-        position: relative;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        max-height: 100vh;
-        box-sizing: border-box;
-        display: block;
-        /* table-layout: fixed; */
-    }
-    table :is(thead, tfoot, tbody) {
-        display: table;
-        table-layout: fixed;
-        width: 100%;
-        box-sizing: border-box;
-    }
-    table.require-border-collapse thead {
-        min-height: calc(var(--bw-svt-p-top));
-    }
-    table.require-border-collapse tfoot {
-        min-height: calc(var(--bw-svt-p-bottom));
-    }
-    table.require-border-collapse {
-        border-collapse: collapse;
-    }
-    table:not(.require-border-collapse) tbody {
-        padding-top: var(--bw-svt-p-top);
-        padding-bottom: var(--bw-svt-p-bottom);
-    }
-    tbody {
-        position: relative;
-        box-sizing: border-box;
-        border: 0px solid currentColor;
-    }
-
-    /** sortable styles */
-    thead :global(th.sortable) {
-        cursor: pointer;
-        user-select: none;
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-    }
-</style>
+<style type="text/css">/*$$__STYLE_CONTENT__$$*/</style>

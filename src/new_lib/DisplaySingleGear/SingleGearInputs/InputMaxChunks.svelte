@@ -1,7 +1,11 @@
 <script lang="ts">
-    import {Input} from "sveltestrap";
+    import {Input} from "@sveltestrap/sveltestrap";
 
-    export let max_allowed_chunks:number;
+    interface Props {
+        max_allowed_chunks: number;
+    }
+
+    let { max_allowed_chunks = $bindable() }: Props = $props();
     let options = [0,10,20,30] as const;
 
 </script>

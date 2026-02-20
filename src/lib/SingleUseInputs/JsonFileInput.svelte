@@ -10,11 +10,15 @@
 
     
 
-    export let gearSeedDatabase:GearSeedDatabase;
+    interface Props {
+        gearSeedDatabase: GearSeedDatabase;
+    }
 
-    let files:FileList;
+    let { gearSeedDatabase = $bindable() }: Props = $props();
 
-    let validJsonFile:boolean;
+    let files:FileList = $state();
+
+    let validJsonFile:boolean = $state();
 
     const onChange = async (event:Event) => {
         const event_target= event.target as HTMLInputElement;
@@ -46,7 +50,7 @@
 <input
     accept=".json,application/json"
     bind:files
-    on:change={onChange}
+    onchange={onChange}
     id="avatar"
     name="avatar"
     type="file"

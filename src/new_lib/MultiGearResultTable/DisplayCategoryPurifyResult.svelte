@@ -12,10 +12,14 @@ import GearSlotImage from "../ImageTypes/GearSlotImage.svelte";
 import GearSlotImages from "../ImageTypes/GearSlotImages.svelte";
 import ChunksImage from "../ImageTypes/ChunksImage.svelte";
 
-export let allDisplayedGearMap:Map<string,GearInputState>;
-export let gearCategory:GearPurifyCategory;
 
-export let resultGearCategory:TicketComboPurifyResult[number];
+    interface Props {
+        allDisplayedGearMap: Map<string,GearInputState>;
+        gearCategory: GearPurifyCategory;
+        resultGearCategory: TicketComboPurifyResult[number];
+    }
+
+    let { allDisplayedGearMap, gearCategory, resultGearCategory }: Props = $props();
 
 </script>
 

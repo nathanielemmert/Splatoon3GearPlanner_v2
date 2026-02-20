@@ -5,10 +5,19 @@
     import type {GearInputState} from "../stores/createGear";
     import DisplaySingleGearRow from "./DisplaySingleGearRow.svelte";
 
-    export let allDisplayedGear:GearInputState[];
-    export let allGearCategoriesMap :ReturnType<typeof createGearPurifyCategoryMap>;
-    export let global_desired_abilities:SubAbility[][];
-    export let allGearCategories:GearPurifyCategory[] = [];
+    interface Props {
+        allDisplayedGear: GearInputState[];
+        allGearCategoriesMap: ReturnType<typeof createGearPurifyCategoryMap>;
+        global_desired_abilities: SubAbility[][];
+        allGearCategories?: GearPurifyCategory[];
+    }
+
+    let {
+        allDisplayedGear,
+        allGearCategoriesMap = $bindable(),
+        global_desired_abilities = $bindable(),
+        allGearCategories = $bindable([])
+    }: Props = $props();
 
 </script>
 

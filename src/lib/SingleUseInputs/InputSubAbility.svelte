@@ -2,9 +2,13 @@
     import { ability_filenames } from "../../assets/abilityParams";
     import InputSubAbilityTooltip from "./InputSubAbilityTooltip.svelte";
 
-    export let abilityId:number|"Unknown";
+    interface Props {
+        abilityId: number|"Unknown";
+    }
 
-    let showPopup:boolean=false;
+    let { abilityId = $bindable() }: Props = $props();
+
+    let showPopup:boolean=$state(false);
 
 
 
@@ -14,8 +18,8 @@
 
 
 <div class="tooltip"
-     on:focusin={()=>showPopup=true}
-     on:focusout={()=>showPopup=false}
+     onfocusin={()=>showPopup=true}
+     onfocusout={()=>showPopup=false}
      tabindex="0"
 >
     <img

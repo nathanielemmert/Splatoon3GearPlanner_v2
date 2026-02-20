@@ -1,17 +1,33 @@
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
     import {LeannySubAbility, SubAbility} from "wasm-splatoon-gear-checker";
     import InputSingleAbility from "./InputSingleAbility.svelte";
 
-    export let ability_combo:SubAbility[];
-    export let onSubmit:(new_ability_combo: SubAbility[]) => void
-    export let allowBlankAbility:boolean=false;
+    interface Props {
+        ability_combo: SubAbility[];
+        onSubmit: (new_ability_combo: SubAbility[]) => void;
+        allowBlankAbility?: boolean;
+        soonest_index?: import('svelte').Snippet;
+        remove?: import('svelte').Snippet;
+    }
+
+    let {
+        ability_combo,
+        onSubmit,
+        allowBlankAbility = false,
+        soonest_index,
+        remove
+    }: Props = $props();
     // let abilityIds = [...ability_combo] as unknown as LeannySubAbility[]
-    let abilityIds:LeannySubAbility[];
+    let abilityIds:LeannySubAbility[] = $state();
     function setAbilityIds(x){abilityIds=x}
 
-    $:setAbilityIds([...ability_combo])
+    run(() => {
+        setAbilityIds([...ability_combo])
+    });
 
-    $:containsEmpty = abilityIds.includes(LeannySubAbility.None)
+    let containsEmpty = $derived(abilityIds.includes(LeannySubAbility.None))
 
     function arraysEqual(a, b) {
         if (a === b) return true;
@@ -24,7 +40,7 @@
     }
 
 
-    let currentlyEditing = false;
+    let currentlyEditing = $state(false);
 
     function onClick(){
         //set editing to true
@@ -56,8 +72,8 @@
 </script>
 
 
-<td on:focusin={onClick}
-    on:focusout={onClickAway}
+<td onfocusin={onClick}
+    onfocusout={onClickAway}
 
 >
     {#each abilityIds as abilityId}
@@ -66,18 +82,18 @@
 </td>
 <td class="left-align">
     <div style="width: 3ch; text-align: right">
-        <slot name="soonest_index"/>
+        {@render soonest_index?.()}
     </div>
 </td>
 <td class:hidden={!currentlyEditing}>
-    <button disabled={containsEmpty} on:click={onSaveChanges} >Save</button>
+    <button disabled={containsEmpty} onclick={onSaveChanges} >Save</button>
 </td>
 <td class:hidden={!currentlyEditing}>
-    <button  on:click={onCancel}>Cancel</button>
+    <button  onclick={onCancel}>Cancel</button>
 </td>
 
 <td class:hidden={!currentlyEditing}>
-    <slot name="remove"/>
+    {@render remove?.()}
 </td>
 
 

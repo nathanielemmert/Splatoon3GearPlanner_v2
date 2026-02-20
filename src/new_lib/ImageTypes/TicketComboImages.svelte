@@ -4,7 +4,11 @@
     import SubAbilityImage from "./SubAbilityImage.svelte";
     import {Ticket} from "wasm-splatoon-gear-checker";
 
-    export let ticketIds: Ticket[];
+    interface Props {
+        ticketIds: Ticket[];
+    }
+
+    let { ticketIds }: Props = $props();
 </script>
 
 

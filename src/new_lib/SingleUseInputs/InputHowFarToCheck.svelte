@@ -1,6 +1,10 @@
 <script lang="ts">
-    import {Input} from "sveltestrap";
-    export let how_far_to_check:number|undefined;
+    import {Input} from "@sveltestrap/sveltestrap";
+    interface Props {
+        how_far_to_check: number|undefined;
+    }
+
+    let { how_far_to_check = $bindable() }: Props = $props();
 </script>
 
 

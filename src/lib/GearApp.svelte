@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
     import { writable, type Writable } from "svelte/store";
 /*    import { purify_all_gear } from "../../build/release";*/
     import {purify_all_gear_js as purify_all_gear} from "wasm-splatoon-gear-checker"
@@ -29,48 +31,52 @@
     import InputDesiredAbilities from "./InputDesiredAbilities.svelte";
     import InputAllowedDrinks from "./SingleUseInputs/InputAllowedDrinks.svelte";
 
-    let userGearDatabase:GearSeedDatabase;
+    let userGearDatabase:GearSeedDatabase = $state();
 
     let userGearDatabaseStore=writable<GearSeedDatabase>();
     setContext("userGearDatabaseStore",userGearDatabaseStore);
-    $: $userGearDatabaseStore = userGearDatabase;
+    run(() => {
+        $userGearDatabaseStore = userGearDatabase;
+    });
 
-    $:console.log("userDbStore",$userGearDatabaseStore)
+    run(() => {
+        console.log("userDbStore",$userGearDatabaseStore)
+    });
 
-    let howFarToCheck:number=20;
-    let ticketDepthLimit:number = 3;
-    let alwaysCheckFullTicketDepth:boolean=false;
+    let howFarToCheck:number=$state(20);
+    let ticketDepthLimit:number = $state(3);
+    let alwaysCheckFullTicketDepth:boolean=$state(false);
 
-    let globalDesiredAbilities:number[][] = [...Array(14).keys()].map(i =>[i,i,i]);
+    let globalDesiredAbilities:number[][] = $state([...Array(14).keys()].map(i =>[i,i,i]));
 
-    let gearFilters:NewGearFilters;
-    let singleGearResultFilters:SingleGearResultFilters;
+    let gearFilters:NewGearFilters = $state();
+    let singleGearResultFilters:SingleGearResultFilters = $state();
 
-    let allowed_drinks:number[]=[];
+    let allowed_drinks:number[]=$state([]);
 
 
     //TODO: gearFilters should be applied here, and only be passed down after being filtered.
 
 
-    let allWasmGear:AllWasmGear= {
+    let allWasmGear:AllWasmGear= $state({
         "Head":{},
         "Clothes":{},
         "Shoes":{},
-    };
+    });
 
-    let allGearInputState:AllGearInputState = {
+    let allGearInputState:AllGearInputState = $state({
         "Head":{},
         "Clothes":{},
         "Shoes":{},
-    };
+    });
 
 
     
     
 
-    let gearToPurifyTogether: WasmGear[]=[];
-    let resultIndexToGearId:{[key:number]:[gearType:GearType,gearId:string]};
-    $:{
+    let gearToPurifyTogether: WasmGear[]=$state([]);
+    let resultIndexToGearId:{[key:number]:[gearType:GearType,gearId:string]} = $state();
+    run(() => {
         console.log("REREMDERING RESULTINDEXTOGEARID")
         resultIndexToGearId = {}
         let resultIndex=0;
@@ -84,12 +90,14 @@
             ...(Object.entries(allWasmGear["Clothes"]).filter( addGearToMap.bind(this,"Clothes") )).map(g =>g[1]),
             ...(Object.entries(allWasmGear["Shoes"]).filter( addGearToMap.bind(this,"Shoes") )).map(g =>g[1]),
         ];
-    }
+    });
 
-    let multipleGearResult:MultipleGearResult;
-    $:multipleGearResult = purify_all_gear(gearToPurifyTogether,howFarToCheck,ticketDepthLimit,alwaysCheckFullTicketDepth,allowed_drinks);
+    let multipleGearResult:MultipleGearResult = $derived(purify_all_gear(gearToPurifyTogether,howFarToCheck,ticketDepthLimit,alwaysCheckFullTicketDepth,allowed_drinks));
+    
 
-    $:console.log("USER GEAR DATABASE",userGearDatabase)
+    run(() => {
+        console.log("USER GEAR DATABASE",userGearDatabase)
+    });
 
 
 

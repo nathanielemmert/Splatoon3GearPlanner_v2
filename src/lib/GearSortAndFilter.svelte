@@ -1,11 +1,12 @@
 
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
     import {type GearType, type NewGearFilters, type SingleGearResultFilters} from "./types/types";
 import { type HaveGearMap } from "./types/typesLeanny";
     import type {SingleGearResult} from "wasm-splatoon-gear-checker";
 
 
-    export let gearFilters:NewGearFilters;
     gearFilters ={
         "showHeadGear":{
             filterFunction: function(showHeadGear:boolean, gearType:GearType, [gearId, gear]:[string,HaveGearMap]){
@@ -39,7 +40,12 @@ import { type HaveGearMap } from "./types/typesLeanny";
     }
 
 
-    export let singleGearResultFilters:SingleGearResultFilters;
+    interface Props {
+        gearFilters: NewGearFilters;
+        singleGearResultFilters: SingleGearResultFilters;
+    }
+
+    let { gearFilters = $bindable(), singleGearResultFilters = $bindable() }: Props = $props();
     singleGearResultFilters={
         hideGearWithNoResults:{
             filterFunction: function(hideGearWithNoResults: boolean, gearType: GearType, [gearId, gear]: [string, HaveGearMap], singleGearResult:SingleGearResult):boolean{
@@ -56,7 +62,9 @@ import { type HaveGearMap } from "./types/typesLeanny";
         console.log("SINGLE GEAR FILTERS DEFAULT VALUE")
     }
 
-    $:console.log(singleGearResultFilters)
+    run(() => {
+        console.log(singleGearResultFilters)
+    });
 
 
     

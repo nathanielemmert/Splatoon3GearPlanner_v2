@@ -4,7 +4,11 @@
     import SubAbilityImage from "../SubAbilityImage.svelte";
     import SmallSubAbilityImages from "../SmallSubAbilityImages.svelte";
 
-    export let gearPurifyCategory:GearPurifyCategory;
+    interface Props {
+        gearPurifyCategory: GearPurifyCategory;
+    }
+
+    let { gearPurifyCategory }: Props = $props();
 </script>
 
 {#if gearPurifyCategory.type==="pure"}

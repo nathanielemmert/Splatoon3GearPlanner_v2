@@ -2,15 +2,19 @@
     import {GearType} from "../types/gearTypes";
     import {getContext} from "svelte";
     import {gearInfoParams as gearInfoParams} from "../../assets/gearInfoParams";
-    export let RowId:string=null;
-    export let gearType:GearType=null;
-    export let gearId:string=null;
+    interface Props {
+        RowId?: string;
+        gearType?: GearType;
+        gearId?: string;
+    }
+
+    let { RowId = null, gearType = null, gearId = null }: Props = $props();
     // $: params_gearInfo = gearInfoParams[gearType][gearId];
-    $: gear_filename = (RowId==null)? gearInfoParams[gearType][gearId].__RowId:RowId;
+    let gear_filename = $derived((RowId==null)? gearInfoParams[gearType][gearId].__RowId:RowId);
 </script>
 
 {#if gear_filename}
-    <!-- svelte-ignore a11y-missing-attribute -->
+    <!-- svelte-ignore a11y_missing_attribute -->
     <img src={`https://leanny.github.io/splat3/images/gear/${gear_filename}.png`}/>
 {/if}
 

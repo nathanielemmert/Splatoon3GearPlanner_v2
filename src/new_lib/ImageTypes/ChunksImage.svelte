@@ -3,16 +3,20 @@
 import {ability_filenames} from "../../assets/abilityParams";
 import  {SubAbility} from "wasm-splatoon-gear-checker";
 
-export let abilityId:SubAbility;
-export let quantity:number;
+    interface Props {
+        abilityId: SubAbility;
+        quantity: number;
+    }
+
+    let { abilityId, quantity }: Props = $props();
 </script>
 
 <img src=""/>
 
 <div class="parent">
-    <!-- svelte-ignore a11y-missing-attribute -->
+    <!-- svelte-ignore a11y_missing_attribute -->
     <img class="chunk-icon" src="https://raw.githubusercontent.com/Leanny/splat3/main/images/misc/SkillIconPiece_00%5Es.png"/>
-    <!-- svelte-ignore a11y-missing-attribute -->
+    <!-- svelte-ignore a11y_missing_attribute -->
     <img class="ability"src={`https://leanny.github.io/splat3/images/skill/${SubAbility[abilityId]}.png`}/>
     <div class="quantity-text">{quantity}</div>
 </div>

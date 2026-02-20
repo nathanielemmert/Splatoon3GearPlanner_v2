@@ -1,6 +1,10 @@
 <script lang="ts">
 
-    export let ticketDepthLimit:number;
+    interface Props {
+        ticketDepthLimit: number;
+    }
+
+    let { ticketDepthLimit = $bindable() }: Props = $props();
 
     function onChange(e:Event){
         const target = e.target as HTMLInputElement;
@@ -12,4 +16,4 @@
 </script>
 
 <label for="ticketDepthLimit">Max # of tickets checked at the same time:</label>
-<input id="ticketDepthLimit" on:change={onChange} type="number" value={ticketDepthLimit} max=20 step=1 width="4em">
+<input id="ticketDepthLimit" onchange={onChange} type="number" value={ticketDepthLimit} max=20 step=1 width="4em">

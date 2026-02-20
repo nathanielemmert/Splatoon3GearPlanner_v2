@@ -1,3 +1,4 @@
+<!-- @migration-task Error while migrating Svelte code: `<tr>` is invalid inside `<table>` -->
 <script lang="ts">
     import type { HaveGearMap } from "./types/typesLeanny";
     import type { GearParam } from "./types/typesParams";

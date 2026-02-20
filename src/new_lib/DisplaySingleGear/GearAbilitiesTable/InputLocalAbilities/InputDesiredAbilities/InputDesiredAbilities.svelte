@@ -7,15 +7,24 @@
 
     //TODO: make selected ability have outline/ highlighted.
 
-    export let desired_abilities:SubAbility[][];
-    export let desired_abilities_map:OrderedMap<SubAbility[], boolean>;
-    export let single_gear_result:SingleGearResult;
-    export let hidden:boolean;
+    interface Props {
+        desired_abilities: SubAbility[][];
+        desired_abilities_map: OrderedMap<SubAbility[], boolean>;
+        single_gear_result: SingleGearResult;
+        hidden: boolean;
+    }
+
+    let {
+        desired_abilities = $bindable(),
+        desired_abilities_map = $bindable(),
+        single_gear_result,
+        hidden
+    }: Props = $props();
 
 
     const blank_ability_combo = [LeannySubAbility.None, LeannySubAbility.None, LeannySubAbility.None] as const;
 
-    let next_ability_combo = [...blank_ability_combo];
+    let next_ability_combo = $state([...blank_ability_combo]);
 
 
     function arraysEqual(a, b) {
@@ -68,17 +77,21 @@
             <td>
 
                 <input type="checkbox" checked={desired_abilities_map.get(ability_combo)??true}
-                       on:change={(e)=>{
+                       onchange={(e)=>{
                                console.log("CHANGE");
                                desired_abilities_map = desired_abilities_map.set(ability_combo,e.currentTarget.checked)
                            }}
                 />
             </td>
             <InputDesiredAbilityCombo {ability_combo} onSubmit={onSubmit.bind(null,index)}>
-                <svelte:fragment slot="soonest_index">
-                    {single_gear_result?.summary[ability_combo]}
-                </svelte:fragment>
-                <button slot="remove" on:click={onRemove.bind(null,index)}>Remove</button>
+                {#snippet soonest_index()}
+                    
+                        {single_gear_result?.summary[ability_combo]}
+                    
+                    {/snippet}
+                {#snippet remove()}
+                        <button  onclick={onRemove.bind(null,index)}>Remove</button>
+                    {/snippet}
             </InputDesiredAbilityCombo>
         </tr>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {FormGroup, Input, Label} from "sveltestrap";
+    import {FormGroup, Input, Label} from "@sveltestrap/sveltestrap";
     import {GearType} from "../../types/gearTypes";
     import {LeannySubAbility, SubAbility} from "wasm-splatoon-gear-checker";
     import {ALL_SUB_ABILITIES} from "../../types/helperFunctions";
@@ -8,7 +8,11 @@
     import InputSingleAbility from "../../SingleUseInputs/InputDesiredAbilities/InputSingleAbility.svelte";
 
 
-    export let subAbility:LeannySubAbility;
+    interface Props {
+        subAbility: LeannySubAbility;
+    }
+
+    let { subAbility = $bindable() }: Props = $props();
 </script>
 
 <FormGroup>

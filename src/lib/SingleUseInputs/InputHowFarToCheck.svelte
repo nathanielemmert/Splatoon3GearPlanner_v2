@@ -1,7 +1,11 @@
 <script lang="ts">
 
-    export let how_far_to_check:number;
-    export let wasmValue:number|undefined;
+    interface Props {
+        how_far_to_check: number;
+        wasmValue: number|undefined;
+    }
+
+    let { how_far_to_check = $bindable(), wasmValue }: Props = $props();
 
 
     function onChange(e:Event){
@@ -14,4 +18,4 @@
 </script>
 
 <label for="howFarToCheck">How far to check:</label>
-<input id="howFarToCheck" on:change={onChange} type="number" value={how_far_to_check-1} max=50 step=1 width="4em">
+<input id="howFarToCheck" onchange={onChange} type="number" value={how_far_to_check-1} max=50 step=1 width="4em">

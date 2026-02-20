@@ -1,8 +1,12 @@
 <script lang="ts">
-    import {FormGroup, Input, Label} from "sveltestrap";
+    import {FormGroup, Input, Label} from "@sveltestrap/sveltestrap";
     import {GearType} from "../../types/gearTypes";
 
-    export let gearType:GearType;
+    interface Props {
+        gearType: GearType;
+    }
+
+    let { gearType = $bindable() }: Props = $props();
 </script>
 
 <FormGroup>

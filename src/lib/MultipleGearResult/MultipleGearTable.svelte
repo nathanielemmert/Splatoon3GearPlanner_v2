@@ -8,9 +8,13 @@
 
     let BigIntToTicketCombo = SixteenAbilityCombo.to_js_ability_combo
 
-    export let multipleGearResult: MultipleGearResult;
-    export let resultIndexToGearId:{[key:number]:[gearType:GearType,gearId:string]};
-    export let userGearDatabase:GearSeedDatabase;
+    interface Props {
+        multipleGearResult: MultipleGearResult;
+        resultIndexToGearId: {[key:number]:[gearType:GearType,gearId:string]};
+        userGearDatabase: GearSeedDatabase;
+    }
+
+    let { multipleGearResult, resultIndexToGearId, userGearDatabase }: Props = $props();
 
 
     //$: console.log(multipleGearResult.keys.map((i) => "0x" + i.toString(16)));

@@ -2,15 +2,19 @@
     import { ability_filenames } from "../../../assets/abilityParams";
     import InputSubAbilityTooltip from "./InputSubAbilityTooltip.svelte";
     import type {LeannySubAbility} from "wasm-splatoon-gear-checker";
-    import {Button, Image, Tooltip} from "sveltestrap";
+    import {Button, Image, Tooltip} from "@sveltestrap/sveltestrap";
     import {v4} from "uuid"
 
-    export let abilityId:LeannySubAbility;
-    export let allowBlankAbility:boolean;
+    interface Props {
+        abilityId: LeannySubAbility;
+        allowBlankAbility: boolean;
+    }
 
-    let showPopup:boolean=false;
+    let { abilityId = $bindable(), allowBlankAbility }: Props = $props();
 
-    $:ability_filename = ability_filenames[abilityId]
+    let showPopup:boolean=$state(false);
+
+    let ability_filename = $derived(ability_filenames[abilityId])
 
     const id = "controlledBtn"+v4()
 
@@ -21,8 +25,8 @@
 </script>
 
 <div class="my_tooltip"
-     on:click={()=>showPopup=true}
-     on:focusout={()=>showPopup=false}
+     onclick={()=>showPopup=true}
+     onfocusout={()=>showPopup=false}
      tabindex="0"
 >
     <img

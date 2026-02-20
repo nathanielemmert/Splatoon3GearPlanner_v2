@@ -1,18 +1,26 @@
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
     import {LeannySubAbility, SubAbility} from "wasm-splatoon-gear-checker";
     import InputSingleAbility from "./InputSingleAbility.svelte";
-    import {Button} from "sveltestrap";
+    import {Button} from "@sveltestrap/sveltestrap";
 
-    export let ability_combo:SubAbility[];
-    export let onSubmit:(new_ability_combo: SubAbility[]) => void
-    export let allowBlankAbility:boolean=false;
+    interface Props {
+        ability_combo: SubAbility[];
+        onSubmit: (new_ability_combo: SubAbility[]) => void;
+        allowBlankAbility?: boolean;
+    }
+
+    let { ability_combo, onSubmit, allowBlankAbility = false }: Props = $props();
     // let abilityIds = [...ability_combo] as unknown as LeannySubAbility[]
-    let abilityIds:LeannySubAbility[];
+    let abilityIds:LeannySubAbility[] = $state();
     function setAbilityIds(x){abilityIds=x}
 
-    $:setAbilityIds([...ability_combo])
+    run(() => {
+        setAbilityIds([...ability_combo])
+    });
 
-    $:containsEmpty = abilityIds.includes(LeannySubAbility.None)
+    let containsEmpty = $derived(abilityIds.includes(LeannySubAbility.None))
 
     function arraysEqual(a, b) {
         if (a === b) return true;
@@ -25,7 +33,7 @@
     }
 
 
-    let currentlyEditing = false;
+    let currentlyEditing = $state(false);
 
     function onClick(){
         //set editing to true
@@ -57,8 +65,8 @@
 </script>
 
 
-<td on:focusin={onClick}
-    on:focusout={onClickAway}
+<td onfocusin={onClick}
+    onfocusout={onClickAway}
 
 >
     {#each abilityIds as abilityId}

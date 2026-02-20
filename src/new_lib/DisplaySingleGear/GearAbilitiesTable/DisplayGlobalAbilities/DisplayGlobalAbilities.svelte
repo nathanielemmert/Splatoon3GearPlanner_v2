@@ -4,15 +4,25 @@
     import {OrderedMap} from "immutable";
     import SmallSubAbilityImages from "../../../ImageTypes/SmallSubAbilityImages.svelte";
 
-    import {Button, Styles} from "sveltestrap"
+    import {Button, Styles} from "@sveltestrap/sveltestrap"
 
 
 
-    export let global_desired_abilities:SubAbility[][];
-    export let global_desired_abilities_map:OrderedMap<SubAbility[],boolean>;
-    export let hidden:boolean;
-    export let type:"enabledAbilities"|"disabledAbilities";
-    export let single_gear_result:SingleGearResult;
+    interface Props {
+        global_desired_abilities: SubAbility[][];
+        global_desired_abilities_map: OrderedMap<SubAbility[],boolean>;
+        hidden: boolean;
+        type: "enabledAbilities"|"disabledAbilities";
+        single_gear_result: SingleGearResult;
+    }
+
+    let {
+        global_desired_abilities,
+        global_desired_abilities_map = $bindable(),
+        hidden,
+        type,
+        single_gear_result
+    }: Props = $props();
 
     function shouldDisplayAbilityCombo(
         ability_combo:SubAbility[],
@@ -35,7 +45,7 @@
         <tr class:hidden>
             <td>
                 <input type="checkbox" checked={global_desired_abilities_map.get(ability_combo)??true}
-                       on:change={(e)=>{
+                       onchange={(e)=>{
                                console.log("CHANGE")
                                global_desired_abilities_map = global_desired_abilities_map.set(ability_combo,e.currentTarget.checked)
                            }}

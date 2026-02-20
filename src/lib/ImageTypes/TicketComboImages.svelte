@@ -2,9 +2,13 @@
     import { ability_filenames } from "../../assets/abilityParams";
     import TicketImage from "./TicketImage.svelte";
 
-    export let abilityIds: (string|number)[];
-    let ability_filename_array: (string|number)[];
-    $:ability_filename_array=abilityIds;
+    interface Props {
+        abilityIds: (string|number)[];
+    }
+
+    let { abilityIds }: Props = $props();
+    let ability_filename_array: (string|number)[] = $derived(abilityIds);
+    
 </script>
 
 

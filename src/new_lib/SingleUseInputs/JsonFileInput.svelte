@@ -2,7 +2,7 @@
     import { GearDbSchema, GearSeedDatabaseSchema, type GearSeedDatabase } from "../types/typesLeanny";
 
     import ExampleFileJson from "../../assets/gear_seed_database_2023-12-15_21-37-10.json"
-    import {Button} from "sveltestrap";
+    import {Button} from "@sveltestrap/sveltestrap";
 /*    import Ajv from "ajv/dist/jtd"
     import typesLeannySchema from "../types/typesLeannySchema.json"
     import draft6MetaSchema  from "ajv/dist/refs/json-schema-draft-06.json"*/
@@ -13,11 +13,15 @@
 
     
 
-    export let gearSeedDatabase:GearSeedDatabase;
+    interface Props {
+        gearSeedDatabase: GearSeedDatabase;
+    }
 
-    let files:FileList;
+    let { gearSeedDatabase = $bindable() }: Props = $props();
 
-    let validJsonFile:boolean;
+    let files:FileList = $state();
+
+    let validJsonFile:boolean = $state();
 
     const onChange = async (event:Event) => {
         const event_target= event.target as HTMLInputElement;
@@ -61,7 +65,7 @@
 <input
     accept=".json,application/json"
     bind:files
-    on:change={onChange}
+    onchange={onChange}
     id="avatar"
     name="avatar"
     type="file"

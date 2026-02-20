@@ -2,7 +2,7 @@
 
 import {type GearInfo, type GearPurifyCategory} from "../types/gearTypes";
 import {gearInfoParams} from "../../assets/gearInfoParams";
-import {Gear, SubAbility} from "wasm-splatoon-gear-checker";
+import {Gear, type SubAbility} from "wasm-splatoon-gear-checker";
 import {OrderedMap} from "immutable";
 import {DEFAULT_ALLOWED_DRINKS} from "../types/helperFunctions";
 import {writable, derived, type StoreOptions} from "@amadeus-it-group/tansu"

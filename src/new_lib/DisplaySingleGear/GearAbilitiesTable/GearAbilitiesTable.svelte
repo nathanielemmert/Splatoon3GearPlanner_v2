@@ -1,3 +1,4 @@
+<!-- @migration-task Error while migrating Svelte code: `<tr>` is invalid inside `<table>` -->
 <svelte:options immutable={true}/>
 <script lang="ts">
     import  {type SingleGearResult, type SubAbility} from "wasm-splatoon-gear-checker";

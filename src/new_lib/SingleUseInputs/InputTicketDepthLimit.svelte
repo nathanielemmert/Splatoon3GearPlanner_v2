@@ -1,10 +1,14 @@
 <script lang="ts">
-    import {Input} from "sveltestrap";
+    import {Input} from "@sveltestrap/sveltestrap";
     import type { ReadableSignal, } from "@amadeus-it-group/tansu";
     import {readable} from "@amadeus-it-group/tansu";
 
-    export let ticketDepthLimit:number;
-    export let enabled:ReadableSignal<boolean> = readable(true);
+    interface Props {
+        ticketDepthLimit: number;
+        enabled?: ReadableSignal<boolean>;
+    }
+
+    let { ticketDepthLimit = $bindable(), enabled = readable(true) }: Props = $props();
 </script>
 
 

@@ -3,7 +3,7 @@
   import DisplayTimelineIndex from "./testRust/DisplayTimelineIndex.svelte";
   import {set_panic_hook} from "wasm-splatoon-gear-checker"
 import GearApp from "./new_lib/GearApp.svelte";
-import {Styles} from "sveltestrap";
+import {Styles} from "@sveltestrap/sveltestrap";
   set_panic_hook();
 </script>
 

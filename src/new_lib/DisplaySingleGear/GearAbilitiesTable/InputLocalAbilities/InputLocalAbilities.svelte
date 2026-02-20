@@ -4,10 +4,19 @@
     import type {SingleGearResult, SubAbility} from "wasm-splatoon-gear-checker";
     import InputDesiredAbilities from "./InputDesiredAbilities/InputDesiredAbilities.svelte";
 
-    export let local_desired_abilities_map: OrderedMap<SubAbility[], boolean>;
-    export let local_desired_abilities:SubAbility[][];
-    export let single_gear_result:SingleGearResult;
-    export let hidden:boolean;
+    interface Props {
+        local_desired_abilities_map: OrderedMap<SubAbility[], boolean>;
+        local_desired_abilities: SubAbility[][];
+        single_gear_result: SingleGearResult;
+        hidden: boolean;
+    }
+
+    let {
+        local_desired_abilities_map = $bindable(),
+        local_desired_abilities = $bindable(),
+        single_gear_result,
+        hidden
+    }: Props = $props();
 
 
 </script>

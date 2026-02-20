@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
 
     import {
         Button, ButtonDropdown,
@@ -9,7 +11,7 @@
         ModalBody,
         ModalFooter,
         ModalHeader
-    } from "sveltestrap";
+    } from "@sveltestrap/sveltestrap";
     import {
         createGearPurifyCategoryMap,
         type GearPurifyCategory, type GearPurifyCategoryId,
@@ -32,14 +34,23 @@
 
 
 
-    let gearType:GearType=null;
-    let subAbility:LeannySubAbility=LeannySubAbility.None;
+    let gearType:GearType=$state(null);
+    let subAbility:LeannySubAbility=$state(LeannySubAbility.None);
 
-    export let allGearCategories:GearPurifyCategory[];
-    export let allGearCategoriesMap:ReturnType<typeof createGearPurifyCategoryMap>;
-    export let allDisplayedGear:GearInputState[];
 
-    export let open:boolean;
+    interface Props {
+        allGearCategories: GearPurifyCategory[];
+        allGearCategoriesMap: ReturnType<typeof createGearPurifyCategoryMap>;
+        allDisplayedGear: GearInputState[];
+        open: boolean;
+    }
+
+    let {
+        allGearCategories = $bindable(),
+        allGearCategoriesMap = $bindable(),
+        allDisplayedGear,
+        open = $bindable()
+    }: Props = $props();
     const toggle = ()=>{
         open=!open
         if(!open){
@@ -47,8 +58,10 @@
             subAbility=LeannySubAbility.None;
         }
     };
-    $:validInput = gearType!=null && subAbility!=LeannySubAbility.None
-    $:console.log(gearType,subAbility,validInput)
+    let validInput = $derived(gearType!=null && subAbility!=LeannySubAbility.None)
+    run(() => {
+        console.log(gearType,subAbility,validInput)
+    });
 
     function createPureGearCategory(auto_add:boolean){
         let newCategory:PureGearCategory = {type: "pure", gearType, subAbility, containedGear:[]}

@@ -10,7 +10,7 @@
         DropdownItem,
         DropdownMenu,
         DropdownToggle
-    } from "sveltestrap";
+    } from "@sveltestrap/sveltestrap";
     import type {GearPurifyCategory} from "../types/gearTypes";
     import {createGearPurifyCategoryMap} from "../types/gearTypes";
     import {abilityNameParams} from "../../assets/translationParams";
@@ -19,16 +19,26 @@
     import GearCategoryName from "../ImageTypes/GearCategoryName/GearCategoryName.svelte";
     import type {GearInputState} from "../stores/createGear";
 
-    export let gearCategory:GearPurifyCategory;
-    export let allDisplayedGear:GearInputState[];
-
-    export let allGearCategories:GearPurifyCategory[];
-    export let allGearCategoriesMap:ReturnType<typeof createGearPurifyCategoryMap>
-
-    export let global_desired_abilities:SubAbility[][]
 
 
-    let showCategory=true;
+    interface Props {
+        gearCategory: GearPurifyCategory;
+        allDisplayedGear: GearInputState[];
+        allGearCategories: GearPurifyCategory[];
+        allGearCategoriesMap: ReturnType<typeof createGearPurifyCategoryMap>;
+        global_desired_abilities: SubAbility[][];
+    }
+
+    let {
+        gearCategory = $bindable(),
+        allDisplayedGear,
+        allGearCategories = $bindable(),
+        allGearCategoriesMap = $bindable(),
+        global_desired_abilities
+    }: Props = $props();
+
+
+    let showCategory=$state(true);
 
 </script>
 

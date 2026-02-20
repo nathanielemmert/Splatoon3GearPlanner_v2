@@ -1,7 +1,11 @@
 <script lang="ts">
     import { ability_filenames } from "../../assets/abilityParams";
 
-    export let abilityId: string;
+   interface Props {
+      abilityId: string;
+   }
+
+   let { abilityId }: Props = $props();
 </script>
 
 {#if abilityId == "15"}<!-- No Ticket -->
@@ -11,9 +15,9 @@
 
 {:else}<!-- Normal Ticket -->
     <div class="parent">
-        <!-- svelte-ignore a11y-missing-attribute -->
+        <!-- svelte-ignore a11y_missing_attribute -->
         <img class="ticket-icon"src="https://cdn.wikimg.net/en/splatoonwiki/images/c/c3/S2_Icon_Drink_Ticket.png"/>
-        <!-- svelte-ignore a11y-missing-attribute -->
+        <!-- svelte-ignore a11y_missing_attribute -->
         <img class="ability"src={`https://leanny.github.io/splat3/images/skill/${ability_filenames[abilityId]}.webp`}/>
     </div>
 {/if}

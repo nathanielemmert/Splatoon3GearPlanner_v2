@@ -1,16 +1,25 @@
 <script lang="ts">
     import {GearType} from "../../types/gearTypes";
     import {ALL_SUB_ABILITIES} from "../../types/helperFunctions";
-    import {ListGroup, ListGroupItem} from "sveltestrap";
+    import {ListGroup, ListGroupItem} from "@sveltestrap/sveltestrap";
     import type {LeannySubAbility} from "wasm-splatoon-gear-checker";
     import {SubAbility} from "wasm-splatoon-gear-checker";
     import SmallSubAbilityImages from "../../ImageTypes/SmallSubAbilityImages.svelte";
     import {createGearPurifyCategoryMap} from "../../types/gearTypes";
 
-    export let gearType:GearType;
-    export let subAbility:SubAbility;
-    export let alreadyCreated:boolean=false;
-    export let allGearCategoriesMap:ReturnType<typeof createGearPurifyCategoryMap>;
+    interface Props {
+        gearType: GearType;
+        subAbility: SubAbility;
+        alreadyCreated?: boolean;
+        allGearCategoriesMap: ReturnType<typeof createGearPurifyCategoryMap>;
+    }
+
+    let {
+        gearType = $bindable(),
+        subAbility = $bindable(),
+        alreadyCreated = false,
+        allGearCategoriesMap
+    }: Props = $props();
 </script>
 
 

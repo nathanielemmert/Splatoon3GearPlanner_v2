@@ -13,11 +13,11 @@
 
 
 
-    let userGearDatabase:GearSeedDatabase;
+    let userGearDatabase:GearSeedDatabase = $derived(userGearDatabase);
 
     let userGearDatabaseStore=writable<GearSeedDatabase>();
     setContext("userGearDatabaseStore",userGearDatabaseStore);
-    $: $userGearDatabaseStore = userGearDatabase;
+    
 
     let allowed_drinks:Ticket[]=[];
 

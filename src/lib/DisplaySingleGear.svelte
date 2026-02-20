@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
     import { gearInfo } from "../assets/gearInfoParams";
     import { VERSION } from "../main";
     import GearImage from "./ImageTypes/GearImage.svelte";
@@ -14,77 +16,119 @@
     import {getContext} from "svelte";
     import type {Writable} from "svelte/store";
 
-    export let howFarToCheck:number;
-    export let gearId: string;
-/*    export let gear: HaveGearMap;*/
-    export let gearType: "Head" | "Clothes" | "Shoes";
-    export let globalDesiredAbilities: number[][];
-     export let globalWasmGear: WasmGear;
 
-    export let gearSelectedForPurify:boolean;
-    export let hideResultTable: boolean = false;
 
-    export let single_gear_result:SingleGearResult;
 
-    export let allowed_drinks:number[];
 
-    export let categoryState:{
+
+    interface Props {
+        howFarToCheck: number;
+        gearId: string;
+        /*    export let gear: HaveGearMap;*/
+        gearType: "Head" | "Clothes" | "Shoes";
+        globalDesiredAbilities: number[][];
+        globalWasmGear: WasmGear;
+        gearSelectedForPurify: boolean;
+        hideResultTable?: boolean;
+        single_gear_result: SingleGearResult;
+        allowed_drinks: number[];
+        categoryState: {
         color:string,
         order:string,
         collapsed:boolean,
     };
+    }
 
-    $:categoryColor = categoryState.color;
-    $:categoryCollapsed = categoryState.collapsed;
+    let {
+        howFarToCheck,
+        gearId,
+        gearType,
+        globalDesiredAbilities,
+        globalWasmGear = $bindable(),
+        gearSelectedForPurify = $bindable(),
+        hideResultTable = $bindable(false),
+        single_gear_result = $bindable(),
+        allowed_drinks,
+        categoryState
+    }: Props = $props();
+
+    let categoryColor = $derived(categoryState.color);
+    let categoryCollapsed = $derived(categoryState.collapsed);
     // export let categoryColor:string;
 
     // let gear:HaveGearMap;
     const gearSeedDatabase=getContext<Writable<GearSeedDatabase>>("userGearDatabaseStore")
-    $:console.log(categoryColor)
-    $:gearDb = $gearSeedDatabase.GearDB
-    $:console.log("gearDbgetContext",gearDb)
-    $:gear = gearDb[`HaveGear${gearType}Map`][gearId];
+    run(() => {
+        console.log(categoryColor)
+    });
+    let gearDb = $derived($gearSeedDatabase.GearDB)
+    run(() => {
+        console.log("gearDbgetContext",gearDb)
+    });
+    let gear = $derived(gearDb[`HaveGear${gearType}Map`][gearId]);
 
 
     console.log("SINGLE GEAR INITIAL RENDER")
 
-    $:console.log("HOW FAR TO CHECK",howFarToCheck)
-    $:console.log("gearId",gearId)
-    $:console.log("gear=",gear==null?null:"")
+    run(() => {
+        console.log("HOW FAR TO CHECK",howFarToCheck)
+    });
+    run(() => {
+        console.log("gearId",gearId)
+    });
+    run(() => {
+        console.log("gear=",gear==null?null:"")
+    });
 /*    $:console.log("ExDrinksArray",gear.ExDrinksArray==null?null:"")
     $:console.log("Favorite",gear.Favorite==null?null:"")
     $:console.log("ExSkillArray",gear.ExSkillArray==null?null:"" )
     $:console.log("MainSkill",gear.MainSkill==null?null:"" )
     $:console.log("RandomContext",gear.RandomContext==null?null:"" )*/
 
-    $:console.log("gearType",gearType)
-    $:console.log("globalDesiredAbilities",globalDesiredAbilities)
-    $:console.log("gearSelectedForPurify",gearSelectedForPurify)
-    $:console.log("hideResultTable",hideResultTable)
+    run(() => {
+        console.log("gearType",gearType)
+    });
+    run(() => {
+        console.log("globalDesiredAbilities",globalDesiredAbilities)
+    });
+    run(() => {
+        console.log("gearSelectedForPurify",gearSelectedForPurify)
+    });
+    run(() => {
+        console.log("hideResultTable",hideResultTable)
+    });
 
 
 
 
-    $: params_gearInfo = gearInfo[gearType][gearId];
-    $: gear_filename = params_gearInfo.__RowId;
+    let params_gearInfo = $derived(gearInfo[gearType][gearId]);
+    let gear_filename = $derived(params_gearInfo.__RowId);
 
 
-    let localWasmGear: WasmGear;
-    $:localWasmGear = {
-                      seed: gear.RandomContext,
-                      brand: params_gearInfo.Brand,
-                      desired_abilities: (gear.MainSkill>=0 && gear.MainSkill<=13)?[Array(3).fill(gear.MainSkill)]:[],//TODO: RIGHT NOW IT IS HARDCODED TO ONLY SHOW PURE GEAR
-                  }
-    $:globalWasmGear =
-            (gearSelectedForPurify)
-                ? localWasmGear
-                : undefined;
-    $:console.log(globalWasmGear)
+    let localWasmGear: WasmGear = $state();
+    run(() => {
+        localWasmGear = {
+                          seed: gear.RandomContext,
+                          brand: params_gearInfo.Brand,
+                          desired_abilities: (gear.MainSkill>=0 && gear.MainSkill<=13)?[Array(3).fill(gear.MainSkill)]:[],//TODO: RIGHT NOW IT IS HARDCODED TO ONLY SHOW PURE GEAR
+                      }
+    });
+    run(() => {
+        globalWasmGear =
+                (gearSelectedForPurify)
+                    ? localWasmGear
+                    : undefined;
+    });
+    run(() => {
+        console.log(globalWasmGear)
+    });
 
 
 
     /*let single_gear_result:SingleGearResult;*/
-    $:single_gear_result= purify_single_gear(localWasmGear,howFarToCheck,allowed_drinks);
+    run(() => {
+        single_gear_result= purify_single_gear(localWasmGear,howFarToCheck,allowed_drinks);
+    });
 
     // $: nonempty_single_gear_result = single_gear_result.some(m=>m.keys.length>0)
 
@@ -109,7 +153,7 @@
             <input type="checkbox" />
         </td>
         <td>
-            <button id="toggle" on:click={()=>hideResultTable=!hideResultTable}>
+            <button id="toggle" onclick={()=>hideResultTable=!hideResultTable}>
                 {hideResultTable ? "Show" : "Hide"}
             </button>
 

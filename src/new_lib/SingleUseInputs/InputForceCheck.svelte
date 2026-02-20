@@ -1,6 +1,10 @@
 <script lang="ts">
-    import {Input} from "sveltestrap";
-    export let alwaysCheckFullTicketDepth:boolean;
+    import {Input} from "@sveltestrap/sveltestrap";
+    interface Props {
+        alwaysCheckFullTicketDepth: boolean;
+    }
+
+    let { alwaysCheckFullTicketDepth = $bindable() }: Props = $props();
 </script>
 
 

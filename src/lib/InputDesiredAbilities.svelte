@@ -1,3 +1,4 @@
+<!-- @migration-task Error while migrating Svelte code: `<tr>` is invalid inside `<table>` -->
 <script lang="ts">
     import SubAbilityImages from "./ImageTypes/SubAbilityImages.svelte";
     import InputSubAbilities from "./SingleUseInputs/InputSubAbilities.svelte";

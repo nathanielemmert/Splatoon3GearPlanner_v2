@@ -3,8 +3,12 @@
     import InputSubAbility from "./InputSubAbility.svelte";
     import {setContext} from "svelte";
 
-    export let abilityIds: (number|"Unknown")[];
-    export let allowBlankAbility:boolean=false;
+    interface Props {
+        abilityIds: (number|"Unknown")[];
+        allowBlankAbility?: boolean;
+    }
+
+    let { abilityIds, allowBlankAbility = false }: Props = $props();
 
     setContext('allowBlankAbility', allowBlankAbility);
 

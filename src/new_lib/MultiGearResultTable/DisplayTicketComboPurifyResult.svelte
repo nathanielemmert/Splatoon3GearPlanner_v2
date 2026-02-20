@@ -1,8 +1,10 @@
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
     import type {GearInputState, GearPurifyCategory} from "../types/gearTypes";
     import type {TicketCombo, TicketComboPurifyResult} from "wasm-splatoon-gear-checker";
     import GearImage from "../ImageTypes/GearImage.svelte";
-    import {Button, Card, CardBody, CardHeader, Input, Table} from "sveltestrap";
+    import {Button, Card, CardBody, CardHeader, Input, Table} from "@sveltestrap/sveltestrap";
     import {abilityNameParams} from "../../assets/translationParams";
     import {SubAbility} from "wasm-splatoon-gear-checker";
     import SubAbilityImage from "../ImageTypes/SubAbilityImage.svelte";
@@ -14,22 +16,28 @@
     import GearSlotImages from "../ImageTypes/GearSlotImages.svelte";
     import GearCategoryName from "../ImageTypes/GearCategoryName/GearCategoryName.svelte";
 
-    export let resultIndex:number;
 
-    export let ticket_combos_map: Map<TicketCombo, TicketComboPurifyResult>;
-    export let allGearCategories:GearPurifyCategory[];
+    interface Props {
+        resultIndex: number;
+        ticket_combos_map: Map<TicketCombo, TicketComboPurifyResult>;
+        allGearCategories: GearPurifyCategory[];
+    }
 
-    let ticketComboIndex = 1
-    let result_entries:[TicketCombo, TicketComboPurifyResult][];
+    let { resultIndex, ticket_combos_map, allGearCategories }: Props = $props();
+
+    let ticketComboIndex = $state(1)
+    let result_entries:[TicketCombo, TicketComboPurifyResult][] = $state();
     const updateResultEntries = (x:any)=>{
         result_entries = [...ticket_combos_map.entries()];
         ticketComboIndex=1;
     }
-    $:updateResultEntries(ticket_combos_map)
-    $:current_ticket_combo = result_entries[ticketComboIndex-1][0]
-    $:ticketComboPurifyResult = result_entries[ticketComboIndex-1][1]
+    run(() => {
+        updateResultEntries(ticket_combos_map)
+    });
+    let current_ticket_combo = $derived(result_entries[ticketComboIndex-1][0])
+    let ticketComboPurifyResult = $derived(result_entries[ticketComboIndex-1][1])
 
-    let showTable = true;
+    let showTable = $state(true);
 
 </script>
 

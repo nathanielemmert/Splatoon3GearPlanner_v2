@@ -20,15 +20,25 @@
 
     type MapValues<T> = T extends Map<any,infer V>?V:never
 
-    export let userGearDatabase:GearSeedDatabase;
-    export let ticketComboIndex: number;
-    export let ticketCombo: number[];
-    export let ticketComboResult: MapValues<MultipleGearResult> /*MultipleGearResult["values"][number];*/
-    export let resultIndexToGearId: {
+    interface Props {
+        userGearDatabase: GearSeedDatabase;
+        ticketComboIndex: number;
+        ticketCombo: number[];
+        ticketComboResult: MapValues<MultipleGearResult>;
+        resultIndexToGearId: {
         [key: number]: [gearType: GearType, gearId: string];
     };
+    }
 
-    let hideResultTable: boolean = true;
+    let {
+        userGearDatabase,
+        ticketComboIndex,
+        ticketCombo,
+        ticketComboResult,
+        resultIndexToGearId
+    }: Props = $props();
+
+    let hideResultTable: boolean = $state(true);
     function toggleResultTable(e: Event) {
         const target = e.target as HTMLButtonElement;
         hideResultTable = !hideResultTable;
@@ -42,10 +52,10 @@
         <TicketComboImages abilityIds={ticketCombo} />
     </td>
     <td>
-        <button on:click={toggleResultTable}>{hideResultTable?"Show":"Hide"}</button>
+        <button onclick={toggleResultTable}>{hideResultTable?"Show":"Hide"}</button>
     </td>
 </tr>
-<tr />
+<tr></tr>
 <tr style={hideResultTable ? "visibility:collapse" : ""}>
     <td colspan="10">
         <div>

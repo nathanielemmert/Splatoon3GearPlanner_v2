@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from "sveltestrap";
+    import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from "@sveltestrap/sveltestrap";
     import type {
         GearPurifyCategory,
         GearPurifyCategoryId,
@@ -14,14 +14,23 @@
 
 
 
-    export let allGearCategoriesMap:ReturnType<typeof createGearPurifyCategoryMap>;
-    export let allGearCategories:GearPurifyCategory[];
 
     // export let gearPurifyCategory:WritableSignal<GearPurifyCategory | null,GearPurifyCategory|null>;
-    export let gearPurifyCategory : GearPurifyCategory | null;
 
 
-    export let gearInputState:GearInputState;
+    interface Props {
+        allGearCategoriesMap: ReturnType<typeof createGearPurifyCategoryMap>;
+        allGearCategories: GearPurifyCategory[];
+        gearPurifyCategory: GearPurifyCategory | null;
+        gearInputState: GearInputState;
+    }
+
+    let {
+        allGearCategoriesMap = $bindable(),
+        allGearCategories = $bindable(),
+        gearPurifyCategory = $bindable(),
+        gearInputState = $bindable()
+    }: Props = $props();
 
 
     function removeGearFromCategory(){

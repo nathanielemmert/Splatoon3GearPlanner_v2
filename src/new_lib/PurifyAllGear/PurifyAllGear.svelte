@@ -1,5 +1,5 @@
 <script lang="ts">
-import {Button} from "sveltestrap";
+import {Button} from "@sveltestrap/sveltestrap";
 import {createGearPurifyCategoryMap,  type GearPurifyCategory} from "../types/gearTypes";
 import {Gear, GearCategory, GearPurifier, type MultiGearResult} from "wasm-splatoon-gear-checker";
 import {DEFAULT_ALLOWED_DRINKS} from "../types/helperFunctions";
@@ -13,9 +13,13 @@ import {
 import InputForceCheck from "../SingleUseInputs/InputForceCheck.svelte";
 import InputTicketDepthLimit from "../SingleUseInputs/InputTicketDepthLimit.svelte";
 
-export let allGearCategories:GearPurifyCategory[] = [];
+    interface Props {
+        allGearCategories?: GearPurifyCategory[];
+    }
 
-let multi_gear_result:MultiGearResult;
+    let { allGearCategories = [] }: Props = $props();
+
+let multi_gear_result:MultiGearResult = $state();
 
 
 function updateResultTable(){

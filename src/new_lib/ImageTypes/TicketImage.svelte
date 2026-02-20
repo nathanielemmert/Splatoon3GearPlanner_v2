@@ -2,7 +2,11 @@
     import { ability_filenames } from "../../assets/abilityParams";
     import {Ticket} from "../../../wasm-splatoon-gear-checker/pkg/wasm_splatoon_gear_checker";
 
-    export let abilityId:Ticket;
+    interface Props {
+        abilityId: Ticket;
+    }
+
+    let { abilityId }: Props = $props();
     //TODO: https://github.com/Leanny/splat3/blob/main/images/food/GearPowerTicketBase.png
 </script>
 
@@ -13,9 +17,9 @@
 
 {:else}<!-- Normal Ticket -->
     <div class="ticket-container">
-        <!-- svelte-ignore a11y-missing-attribute -->
+        <!-- svelte-ignore a11y_missing_attribute -->
         <img class="ticket-icon"src="https://cdn.wikimg.net/en/splatoonwiki/images/c/c3/S2_Icon_Drink_Ticket.png"/>
-        <!-- svelte-ignore a11y-missing-attribute -->
+        <!-- svelte-ignore a11y_missing_attribute -->
         <img class="ability"src={`https://leanny.github.io/splat3/images/skill/${ability_filenames[abilityId]}.png`}/>
     </div>
 {/if}

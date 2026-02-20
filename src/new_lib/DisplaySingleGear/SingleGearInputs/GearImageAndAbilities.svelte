@@ -7,11 +7,15 @@
     import {type GearSeedDatabase} from "../../types/typesLeanny";
     import {type GearType} from "../../types/gearTypes";
 
-    export let gearType:GearType;
-    export let gearId:string;
+    interface Props {
+        gearType: GearType;
+        gearId: string;
+    }
+
+    let { gearType, gearId }: Props = $props();
 
     const gearSeedDatabase=getContext<Writable<GearSeedDatabase>>("userGearDatabaseStore");
-    $:gear = $gearSeedDatabase.GearDB[`HaveGear${gearType}Map`][gearId]
+    let gear = $derived($gearSeedDatabase.GearDB[`HaveGear${gearType}Map`][gearId])
 </script>
 
 

@@ -3,7 +3,11 @@
     import TicketImage from "./TicketImage.svelte";
     import ChunksImage from "./ChunksImage.svelte";
 
-    export let gearSlot:GearSlot;
+    interface Props {
+        gearSlot: GearSlot;
+    }
+
+    let { gearSlot }: Props = $props();
     if(gearSlot.variant=="Ticket"){
         let x = gearSlot.contents
     }

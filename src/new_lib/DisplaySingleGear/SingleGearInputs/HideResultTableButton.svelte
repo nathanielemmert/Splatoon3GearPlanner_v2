@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {Button} from "sveltestrap";
+    import {Button} from "@sveltestrap/sveltestrap";
     import {getContext, setContext} from "svelte";
     import type {ReadableSignal, WritableSignal} from "@amadeus-it-group/tansu";
     import {readable} from "@amadeus-it-group/tansu";
@@ -10,7 +10,11 @@
         );
     }
 
-    export let hideResultTable: boolean = false;
+    interface Props {
+        hideResultTable?: boolean;
+    }
+
+    let { hideResultTable = $bindable(false) }: Props = $props();
 
     let handleScroll:ReadableSignal<any> = getContext("handleScroll")??readable(()=>{});
 

@@ -1,8 +1,9 @@
+<!-- @migration-task Error while migrating Svelte code: `<tr>` is invalid inside `<table>` -->
 <script lang="ts">
     import {LeannySubAbility, SubAbility} from "wasm-splatoon-gear-checker";
     import InputDesiredAbilityCombo from "./InputDesiredAbilityCombo.svelte";
     import SubAbilityImage from "../../ImageTypes/SubAbilityImage.svelte";
-    import {Button} from "sveltestrap";
+    import {Button} from "@sveltestrap/sveltestrap";
 
 
 

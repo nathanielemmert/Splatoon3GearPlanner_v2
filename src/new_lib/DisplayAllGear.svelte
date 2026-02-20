@@ -5,7 +5,7 @@
     import VirtualTable from 'svelte-virtual-table'
     import DisplayGearCategories from "./DisplayGearCategories/DisplayGearCategories.svelte";
     import PurifyAllGear from "./PurifyAllGear/PurifyAllGear.svelte";
-    import {Progress} from "sveltestrap";
+    import {Progress} from "@sveltestrap/sveltestrap";
     import type {GearInputState} from "./stores/createGear";
     import {createGear} from "./stores/createGear";
     import DisplaySingleGearRow from "./DisplayAllGearRows/DisplaySingleGearRow.svelte";
@@ -14,26 +14,30 @@
     import MyVirtualTable from "../svelte_virtual_table/MyVirtualTable.svelte";
 
 
-    export let userGearDatabase: GearSeedDatabase;
-    export let global_desired_abilities: SubAbility[][];
     let gearDb= userGearDatabase.GearDB;
 
 
-    export let allowed_drinks:Ticket[];
+    interface Props {
+        userGearDatabase: GearSeedDatabase;
+        global_desired_abilities: SubAbility[][];
+        allowed_drinks: Ticket[];
+    }
+
+    let { userGearDatabase, global_desired_abilities = $bindable(), allowed_drinks }: Props = $props();
 
 
 
-    let allDisplayedGear:GearInputState[] = [];
+    let allDisplayedGear:GearInputState[] = $state([]);
 
     //TODO: this should only run once when the DisplayAllGear is first instantiated.
     // However, if a new userGearDatabase file is uploaded, this whole component should be destroyed and recreated.
-    let allGearCategories:GearPurifyCategory[] = [];
-    let allGearCategoriesMap=createGearPurifyCategoryMap();
+    let allGearCategories:GearPurifyCategory[] = $state([]);
+    let allGearCategoriesMap=$state(createGearPurifyCategoryMap());
 
-    let loadingCount = 0;
+    let loadingCount = $state(0);
     //@ts-ignore
-    let loading_total:number = "?";
-    let showLoading=true;
+    let loading_total:number = $state("?");
+    let showLoading=$state(true);
 
     function repaint() {
         return new Promise(resolve =>
@@ -119,22 +123,26 @@
             class="svelte-virtual-gear-table"
             fixedColWidth
     >
-        <tr slot="thead" role="row">
-            <!--
-             <th data-sort="time" data-sort-initial="descending">Time ago</th>
-             <th data-sort="comments_count">Comments</th>
-             -->
-            <th>Select</th>
-            <th>Gear</th>
-            <th>Abilities</th>
-            <th>Max Chunks?</th>
-            <th>How far to check?</th>
-            <th>Show Gear Abilities</th>
-        </tr>
-        <svelte:fragment slot="tbody"  let:item={item} let:index >
-            {@const {gearInputState,rowType} = item}
-            <DisplaySingleGearRow {gearInputState} {rowType} bind:allGearCategoriesMap bind:allGearCategories bind:global_desired_abilities hidden={index==-1} />
-        </svelte:fragment>
+        {#snippet thead()}
+                <tr  role="row">
+                <!--
+                 <th data-sort="time" data-sort-initial="descending">Time ago</th>
+                 <th data-sort="comments_count">Comments</th>
+                 -->
+                <th>Select</th>
+                <th>Gear</th>
+                <th>Abilities</th>
+                <th>Max Chunks?</th>
+                <th>How far to check?</th>
+                <th>Show Gear Abilities</th>
+            </tr>
+            {/snippet}
+        {#snippet tbody({ item: item, index })}
+            
+                {@const {gearInputState,rowType} = item}
+                <DisplaySingleGearRow {gearInputState} {rowType} bind:allGearCategoriesMap bind:allGearCategories bind:global_desired_abilities hidden={index==-1} />
+            
+            {/snippet}
 
     </MyVirtualTable>
 {/if}

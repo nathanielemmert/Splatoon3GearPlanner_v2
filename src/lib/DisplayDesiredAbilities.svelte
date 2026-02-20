@@ -1,9 +1,13 @@
 <script lang="ts">
     import SubAbilityImages from "./ImageTypes/SubAbilityImages.svelte";
 
-    export let desiredAbilities: number[][];
+    interface Props {
+        desiredAbilities: number[][];
+    }
 
-    let hidden: boolean = true;
+    let { desiredAbilities }: Props = $props();
+
+    let hidden: boolean = $state(true);
 
     function onClick(e: Event) {
         const target = e.target as HTMLButtonElement;
@@ -14,7 +18,7 @@
 <div class="container">
     <div class="show-hide">
         <label for="toggle">Desired Abilities:</label>
-        <button id="toggle" on:click={onClick}>
+        <button id="toggle" onclick={onClick}>
             {hidden  ? "Show" : "Hide"}
         </button>
     </div>

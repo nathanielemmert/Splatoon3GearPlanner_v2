@@ -3,7 +3,11 @@
     import {type GearSlot} from "wasm-splatoon-gear-checker";
     import GearSlotImage from "./GearSlotImage.svelte";
 
-    export let gearSlots:GearSlot[];
+    interface Props {
+        gearSlots: GearSlot[];
+    }
+
+    let { gearSlots }: Props = $props();
 </script>
 
 {#each gearSlots as gearSlot}

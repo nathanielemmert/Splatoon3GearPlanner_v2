@@ -11,19 +11,28 @@
         CardSubtitle,
         CardText,
         CardTitle, DropdownItem, DropdownMenu, DropdownToggle, Modal
-    } from "sveltestrap";
+    } from "@sveltestrap/sveltestrap";
     import AddPureCategory from "./AddPureGearCategory/AddPureCategory.svelte";
     import DisplaySingleGearCategory from "./DisplaySingleGearCategory.svelte";
     import {SubAbility} from "wasm-splatoon-gear-checker";
     import type {GearInputState} from "../stores/createGear";
 
-    export let allGearCategories:GearPurifyCategory[];
-    export let allGearCategoriesMap:ReturnType<typeof createGearPurifyCategoryMap>;
-    export let allDisplayedGear:GearInputState[];
-    export let global_desired_abilities:SubAbility[][]
+    interface Props {
+        allGearCategories: GearPurifyCategory[];
+        allGearCategoriesMap: ReturnType<typeof createGearPurifyCategoryMap>;
+        allDisplayedGear: GearInputState[];
+        global_desired_abilities: SubAbility[][];
+    }
+
+    let {
+        allGearCategories = $bindable(),
+        allGearCategoriesMap = $bindable(),
+        allDisplayedGear = $bindable(),
+        global_desired_abilities
+    }: Props = $props();
 
 
-    let modalOpen = false;
+    let modalOpen = $state(false);
 
 
 </script>

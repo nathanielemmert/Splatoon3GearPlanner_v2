@@ -3,7 +3,11 @@
     import {ability_filenames} from "../../assets/abilityParams";
     import {getContext} from "svelte";
 
-    export let abilityId:number|"Unknown";
+    interface Props {
+        abilityId: number|"Unknown";
+    }
+
+    let { abilityId = $bindable() }: Props = $props();
 
     let allowBlankAbility:boolean = getContext("allowBlankAbility");
 
@@ -15,7 +19,7 @@
     {#each abilities as ability}
         <img
                 src={`https://leanny.github.io/splat3/images/skill/${ability_filenames[ability]}.webp`} alt=""
-                on:click={()=>{abilityId=ability;console.log("NEW ABILITY",ability)}}
+                onclick={()=>{abilityId=ability;console.log("NEW ABILITY",ability)}}
         />
     {/each}
 
