@@ -2,19 +2,25 @@
 https://svelte.dev/e/node_invalid_placement -->
 <!-- @migration-task Error while migrating Svelte code: `<tr>` is invalid inside `<table>` -->
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
     import SubAbilityImages from "./ImageTypes/SubAbilityImages.svelte";
     import InputSubAbilities from "./SingleUseInputs/InputSubAbilities.svelte";
 
-    export let desiredAbilities: number[][];
+    interface Props {
+        desiredAbilities: number[][];
+    }
 
-    let hidden: boolean = false;
+    let { desiredAbilities = $bindable() }: Props = $props();
+
+    let hidden: boolean = $state(false);
 
     function onClick(e: Event) {
         const target = e.target as HTMLButtonElement;
         hidden = !hidden;
     }
 
-    let newDesiredAbility:(number|"Unknown")[] = Array(3).fill("Unknown");
+    let newDesiredAbility:(number|"Unknown")[] = $state(Array(3).fill("Unknown"));
 
     function addDesiredAbility(abilities:number[]){
         if(!newDesiredAbility.includes("Unknown")){
@@ -26,14 +32,16 @@ https://svelte.dev/e/node_invalid_placement -->
     }
 
 
-    $:console.log(desiredAbilities)
+    run(() => {
+        console.log(desiredAbilities)
+    });
 
 </script>
 
 <div class="container">
     <div>
         <label for="toggle">Desired Abilities:</label>
-        <button id="toggle" on:click={onClick}>
+        <button id="toggle" onclick={onClick}>
             {hidden  ? "Show" : "Hide"}
         </button>
     </div>
@@ -41,7 +49,7 @@ https://svelte.dev/e/node_invalid_placement -->
         {#each desiredAbilities as abilityCombo, listIndex}
             <tr>
                 <td style="text-align: right">
-                    <button on:click={()=>{desiredAbilities.splice(listIndex,1);desiredAbilities=desiredAbilities;}}>Remove</button>
+                    <button onclick={()=>{desiredAbilities.splice(listIndex,1);desiredAbilities=desiredAbilities;}}>Remove</button>
                 </td>
                 <td style="text-align: left"><div>
                     <InputSubAbilities bind:abilityIds={abilityCombo} />
@@ -53,7 +61,7 @@ https://svelte.dev/e/node_invalid_placement -->
                 <InputSubAbilities bind:abilityIds={newDesiredAbility} allowBlankAbility/>
             </div></td>
             <td class="newAbility" style="text-align: right">
-                <button on:click={addDesiredAbility}>Add</button>
+                <button onclick={addDesiredAbility}>Add</button>
             </td>
 
         </tr>

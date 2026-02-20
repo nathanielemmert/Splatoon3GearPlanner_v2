@@ -11,6 +11,7 @@
 <!-- svelte-ignore a11y_missing_attribute -->
 <img src={`https://leanny.github.io/splat3/images/skill/${ability_filenames[abilityId]}.webp`}/>
 
+
 <style>
     img{
         height: 36px;

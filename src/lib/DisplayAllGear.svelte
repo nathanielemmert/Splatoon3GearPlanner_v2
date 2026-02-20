@@ -2,6 +2,8 @@
 https://svelte.dev/e/node_invalid_placement -->
 <!-- @migration-task Error while migrating Svelte code: `<tr>` is invalid inside `<table>` -->
 <script lang="ts">
+    import { run } from 'svelte/legacy';
+
     import DisplaySingleGear from "./DisplaySingleGear.svelte";
     import type {
         AllGearInputState,
@@ -24,22 +26,39 @@ https://svelte.dev/e/node_invalid_placement -->
     import {type GearInputState} from "./types/types";
     import {gearInfo} from "../assets/gearInfoParams";
 
-    export let userGearDatabase: GearSeedDatabase;
-    export let globalDesiredAbilities: number[][];
     let gearDb= userGearDatabase.GearDB;
 
-    export let allWasmGear:AllWasmGear;
-    export let howFarToCheck:number;
-    export let gearFilters:NewGearFilters;
-    export let singleGearResultFilters:SingleGearResultFilters;
 
-    export let allGearInputState:AllGearInputState;
 
-    export let allowed_drinks:number[];
+    interface Props {
+        userGearDatabase: GearSeedDatabase;
+        globalDesiredAbilities: number[][];
+        allWasmGear: AllWasmGear;
+        howFarToCheck: number;
+        gearFilters: NewGearFilters;
+        singleGearResultFilters: SingleGearResultFilters;
+        allGearInputState: AllGearInputState;
+        allowed_drinks: number[];
+    }
 
-    let allDisplayedGear:GearInputState[] = [];
-    $:console.log(singleGearResultFilters)
-    $:console.log("GEAR FILTERS",gearFilters)
+    let {
+        userGearDatabase,
+        globalDesiredAbilities,
+        allWasmGear = $bindable(),
+        howFarToCheck,
+        gearFilters,
+        singleGearResultFilters,
+        allGearInputState = $bindable(),
+        allowed_drinks
+    }: Props = $props();
+
+    let allDisplayedGear:GearInputState[] = $state([]);
+    run(() => {
+        console.log(singleGearResultFilters)
+    });
+    run(() => {
+        console.log("GEAR FILTERS",gearFilters)
+    });
 
     //TODO: this should only run once when the DisplayAllGear is first instantiated.
     // However, if a new userGearDatabase file is uploaded, this whole component should be destroyed and recreated.
@@ -65,7 +84,7 @@ https://svelte.dev/e/node_invalid_placement -->
 
 
 
-    let gearCategories = {
+    let gearCategories = $state({
         "Hidden":{
             color:"red",
             order:"0",
@@ -84,11 +103,11 @@ https://svelte.dev/e/node_invalid_placement -->
             collapsed:false,
             label:"Gear Selected to Purify: "
         },
-    } as const;
+    } as const);
 
     const maxLabelWidth = Math.max(...Object.values(gearCategories).map(a=>a.label.length))/2
 
-    $:{
+    run(() => {
         for(const key in allDisplayedGear){
 
             const {gearId,gearType,gear} = allDisplayedGear[key].gearInfo
@@ -120,9 +139,9 @@ https://svelte.dev/e/node_invalid_placement -->
             if(newCategory!==allDisplayedGear[key].categoryState.category)
                 allDisplayedGear[key].categoryState.category=newCategory
         }
-    }
+    });
 
-    $:{
+    run(() => {
         (function defaultGearSort(){
             allDisplayedGear.sort((a, b) => a.gearInfo.gearId.localeCompare(b.gearInfo.gearId));
             allDisplayedGear.sort((a, b) => a.gearInfo.gear.MainSkill-(b.gearInfo.gear.MainSkill));
@@ -133,10 +152,10 @@ https://svelte.dev/e/node_invalid_placement -->
             allDisplayedGear.sort((a, b) => gearCategories[a.categoryState.category].order.localeCompare(gearCategories[b.categoryState.category].order));
             allDisplayedGear = allDisplayedGear;
         })()
-    }
-    let categoryStarts:{[key:number]:string};
-    let currentIndex=0;
-    $:{
+    });
+    let categoryStarts:{[key:number]:string} = $state();
+    let currentIndex=$state(0);
+    run(() => {
         categoryStarts=[]
         currentIndex=0;
         let currentCategory:string = -1 as string;
@@ -148,9 +167,11 @@ https://svelte.dev/e/node_invalid_placement -->
             }
         }
         console.log(categoryStarts)
-    }
+    });
 
-    $:console.log("allGearInputState",allGearInputState)
+    run(() => {
+        console.log("allGearInputState",allGearInputState)
+    });
 
 
 </script>
@@ -171,7 +192,7 @@ https://svelte.dev/e/node_invalid_placement -->
         {#if listIndex in categoryStarts}
             <tr><td>
                 <span style="float: left;width: {maxLabelWidth}em">{ gearCategories[category].label}</span>
-                <button on:click={()=>gearCategories[category].collapsed=!categoryCollapsed}>
+                <button onclick={()=>gearCategories[category].collapsed=!categoryCollapsed}>
                     {(categoryCollapsed) ?"Show":"Hide"}
                 </button>
             </td></tr>

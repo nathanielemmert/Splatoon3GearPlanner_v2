@@ -27,9 +27,14 @@ https://svelte.dev/e/node_invalid_placement -->
 
     // export let gear: HaveGearMap;
     // export let params_gearInfo: GearParam;
-    // export let desiredAbilities: number[][];
+    
 
-    export let single_gear_result:SingleGearResult;
+    interface Props {
+        // export let desiredAbilities: number[][];
+        single_gear_result: SingleGearResult;
+    }
+
+    let { single_gear_result }: Props = $props();
 
 
     
@@ -102,13 +107,13 @@ https://svelte.dev/e/node_invalid_placement -->
 
 
 
-    $: summarized_gear_result =
-    [...find_soonest_index_for_each_desired_ability(single_gear_result).entries()]
+    let summarized_gear_result =
+    $derived([...find_soonest_index_for_each_desired_ability(single_gear_result).entries()]
     .map( ([abilityCombo,{soonest_index,num_tickets_used}])=>[
        BigIntToAbilityCombo(abilityCombo),
         {soonest_index,num_tickets_used}
     ] as const)
-    .sort( (entry1,entry2)=>entry1[1].soonest_index-entry2[1].soonest_index);
+    .sort( (entry1,entry2)=>entry1[1].soonest_index-entry2[1].soonest_index));
     //.sort( (entry1,entry2)=>entry1[0][0]-entry2[0][0]); // internal ability order
 </script>
 <div>
