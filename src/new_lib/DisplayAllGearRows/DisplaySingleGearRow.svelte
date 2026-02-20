@@ -8,6 +8,8 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
 https://svelte.dev/e/store_invalid_scoped_subscription -->
 <!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component
 https://svelte.dev/e/store_invalid_scoped_subscription -->
+<!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component
+https://svelte.dev/e/store_invalid_scoped_subscription -->
 <script lang="ts">
     import { run } from 'svelte/legacy';
 
@@ -51,8 +53,24 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
 
 
     let gearPurifyCategory;
-    run(() => {
-        ({
+    // run(() => {
+    //     ({
+    //         gearInfo:{gear, gearId, gearType},
+    //         gearPurifyCategory,
+    //         max_allowed_chunks,
+    //         local_how_far_to_check,
+    //         hideResultTable,
+    //         wasmGear,
+    //         desired_abilities_info: {
+    //             enable_all_global, enable_all_local,
+    //             local_desired_abilities,global_desired_abilities_map, local_desired_abilities_map,
+    //             show_all_global, show_all_local, show_disabled_global, show_enabled_global
+    //         },
+    //         computed_desired_abilities,
+    //         single_gear_result
+    //     }=gearInputState);
+    // });
+    let {
             gearInfo:{gear, gearId, gearType},
             gearPurifyCategory,
             max_allowed_chunks,
@@ -66,8 +84,7 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
             },
             computed_desired_abilities,
             single_gear_result
-        }=gearInputState);
-    });
+        }=$derived(gearInputState);
     run(() => {
         console.log($hideResultTable)
     });
