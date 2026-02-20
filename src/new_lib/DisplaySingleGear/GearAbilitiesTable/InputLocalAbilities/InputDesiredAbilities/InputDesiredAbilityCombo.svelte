@@ -6,6 +6,8 @@ https://svelte.dev/e/each_item_invalid_assignment -->
 https://svelte.dev/e/each_item_invalid_assignment -->
 <!-- @migration-task Error while migrating Svelte code: Cannot reassign or bind to each block argument in runes mode. Use the array and index variables instead (e.g. `array[i] = value` instead of `entry = value`, or `bind:value={array[i]}` instead of `bind:value={entry}`)
 https://svelte.dev/e/each_item_invalid_assignment -->
+<!-- @migration-task Error while migrating Svelte code: Cannot reassign or bind to each block argument in runes mode. Use the array and index variables instead (e.g. `array[i] = value` instead of `entry = value`, or `bind:value={array[i]}` instead of `bind:value={entry}`)
+https://svelte.dev/e/each_item_invalid_assignment -->
 <script lang="ts">
     import { run } from 'svelte/legacy';
 
@@ -84,8 +86,8 @@ https://svelte.dev/e/each_item_invalid_assignment -->
     onfocusout={onClickAway}
 
 >
-    {#each abilityIds as abilityId}
-        <InputSingleAbility bind:abilityId={abilityId} {allowBlankAbility}/>
+    {#each abilityIds as abilityId,i}
+        <InputSingleAbility bind:abilityId={abilityIds[i]} {allowBlankAbility}/>
     {/each}
 </td>
 <td class="left-align">
