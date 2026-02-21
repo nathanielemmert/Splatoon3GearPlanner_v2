@@ -2,6 +2,7 @@
 <!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot (show_all_global to show_all_global_1) making the component unusable -->
 <!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot (show_all_global to show_all_global_1) making the component unusable -->
 <!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot (show_all_global to show_all_global_1) making the component unusable -->
+<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot (show_all_global to show_all_global_1) making the component unusable -->
 <!-- @migration-task Error while migrating Svelte code: `<thead>` cannot be a child of `<tbody>`. `<tbody>` only allows these children: `<tr>`, `<style>`, `<script>`, `<template>`. The browser will 'repair' the HTML (by moving, removing, or inserting elements) which breaks Svelte's assumptions about the structure of your components.
 https://svelte.dev/e/node_invalid_placement -->
 <!-- @migration-task Error while migrating Svelte code: `<thead>` cannot be a child of `<tbody>`. `<tbody>` only allows these children: `<tr>`, `<style>`, `<script>`, `<template>`. The browser will 'repair' the HTML (by moving, removing, or inserting elements) which breaks Svelte's assumptions about the structure of your components.
@@ -32,13 +33,13 @@ export let hideResultTable:boolean;
         <!-- <thead> -->
         <tr>
             <th>
-                <slot name="enable_all_global"/>
+                <slot name="enable_all_global_snippet"/>
             </th>
             <th class="title" colspan="2">
                 Global Desired Abilities
             </th>
             <th>
-                <slot name="show_all_global"/>
+                <slot name="show_all_global_snippet"/>
             </th>
         </tr>
         <!-- </thead> -->
@@ -46,34 +47,34 @@ export let hideResultTable:boolean;
         <tr class:hidden={!show_all_global}>
             <td></td>
             <td colspan="2">Disabled Global Abilities:</td>
-            <td><slot name="show_disabled_global"/></td>
+            <td><slot name="show_disabled_global_snippet"/></td>
         </tr>
-        <slot name="disabledGlobalAbilities"/>
+        <slot name="disabledGlobalAbilities_snippet"/>
 
 
 
         <tr class:hidden={!show_all_global}>
             <td></td>
             <td colspan="2">Enabled Global Abilities:</td>
-            <td><slot name="show_enabled_global"/></td>
+            <td><slot name="show_enabled_global_snippet"/></td>
         </tr>
-        <slot name="enabledGlobalAbilities"/>
+        <slot name="enabledGlobalAbilities_snippet"/>
 
 
         <!-- <thead> -->
         <tr>
             <th>
-                <slot name="enable_all_local"/>
+                <slot name="enable_all_local_snippet"/>
             </th>
             <th class="title" colspan="2">
                 Local Desired Abilities
             </th>
             <th>
-                <slot name="show_all_local"/>
+                <slot name="show_all_local_snippet"/>
             </th>
         </tr>
         <!-- </thead> -->
-        <slot name="InputLocalAbilities"/>
+        <slot name="InputLocalAbilities_snippet"/>
 
     </tbody></table>
 {/if}
