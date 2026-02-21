@@ -1,38 +1,38 @@
 
 <script lang="ts">
     interface Props {
-        gearPurifyCategory?: import('svelte').Snippet;
-        gearImageAndAbilities?: import('svelte').Snippet;
-        max_allowed_chunks?: import('svelte').Snippet;
-        how_far_to_check?: import('svelte').Snippet;
-        hideResultTable?: import('svelte').Snippet;
+        gearPurifyCategory_snippet?: import('svelte').Snippet;
+        gearImageAndAbilities_snippet?: import('svelte').Snippet;
+        max_allowed_chunks_snippet?: import('svelte').Snippet;
+        how_far_to_check_snippet?: import('svelte').Snippet;
+        hideResultTable_snippet?: import('svelte').Snippet;
     }
 
     let {
-        gearPurifyCategory,
-        gearImageAndAbilities,
-        max_allowed_chunks,
-        how_far_to_check,
-        hideResultTable
+        gearPurifyCategory_snippet,
+        gearImageAndAbilities_snippet,
+        max_allowed_chunks_snippet,
+        how_far_to_check_snippet,
+        hideResultTable_snippet
     }: Props = $props();
 
 </script>
 
 
 <td class="gear-checkbox">
-    {@render gearPurifyCategory?.()}
+    {@render gearPurifyCategory_snippet?.()}
 </td>
 
-{@render gearImageAndAbilities?.()}
+{@render gearImageAndAbilities_snippet?.()}
 
 <td>
-    {@render max_allowed_chunks?.()}
+    {@render max_allowed_chunks_snippet?.()}
 </td>
 <td>
-    {@render how_far_to_check?.()}
+    {@render how_far_to_check_snippet?.()}
 </td>
 <td>
-    {@render hideResultTable?.()}
+    {@render hideResultTable_snippet?.()}
 </td>
 
 

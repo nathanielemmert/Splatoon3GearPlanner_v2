@@ -10,7 +10,7 @@
     import type {GearInputState} from "../../stores/createGear.svelte";
     import * as uuid from "uuid"
     import {batch, type WritableSignal} from "@amadeus-it-group/tansu";
-    import {MainAbility, SubAbility} from "wasm-splatoon-gear-checker";
+    import {MainAbility, type SubAbility} from "wasm-splatoon-gear-checker";
 
 
 

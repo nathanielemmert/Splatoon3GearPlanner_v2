@@ -1,3 +1,5 @@
+<!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component
+https://svelte.dev/e/store_invalid_scoped_subscription -->
 <!-- @migration-task Error while migrating Svelte code: Identifier 'gearPurifyCategory' has already been declared
 https://svelte.dev/e/js_parse_error -->
 <!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component
@@ -92,10 +94,16 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
     });
 
 </script>
+
+{#snippet hideResultTable2()}
+                        <HideResultTableButton  bind:hideResultTable={$hideResultTable}/>
+{/snippet}
+
+
 {#if rowType=="first"||rowType==null}
     <tr style={hidden?"visibility:collapse;":""}>
         <DisplaySingleGear>
-            {#snippet gearPurifyCategory()}
+            {#snippet gearPurifyCategory_snippet()}
                         <div >
                     <!-- <InputGearPurifyCategoryNostore
                                               bind:allGearCategories
@@ -112,16 +120,16 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
                 </div>
                     {/snippet}
 
-            {#snippet gearImageAndAbilities()}
+            {#snippet gearImageAndAbilities_snippet()}
                         <GearImageAndAbilities  {gearId} {gearType}/>
                     {/snippet}
-            {#snippet max_allowed_chunks()}
+            {#snippet max_allowed_chunks_snippet()}
                         <InputMaxChunks  bind:max_allowed_chunks={$max_allowed_chunks}/>
                     {/snippet}
-            {#snippet how_far_to_check()}
+            {#snippet how_far_to_check_snippet()}
                         <InputHowFarToCheck  bind:how_far_to_check={$local_how_far_to_check}/>
                     {/snippet}
-            {#snippet hideResultTable()}
+            {#snippet hideResultTable_snippet()}
                         <HideResultTableButton  bind:hideResultTable={$hideResultTable}/>
                     {/snippet}
         </DisplaySingleGear>
