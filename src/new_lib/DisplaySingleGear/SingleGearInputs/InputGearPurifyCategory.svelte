@@ -18,6 +18,8 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
 https://svelte.dev/e/store_invalid_scoped_subscription -->
 <!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component
 https://svelte.dev/e/store_invalid_scoped_subscription -->
+<!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component
+https://svelte.dev/e/store_invalid_scoped_subscription -->
 <!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component -->
 <script lang="ts">
     import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from "@sveltestrap/sveltestrap";
@@ -30,7 +32,8 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
     import {gearNameParams} from "../../../assets/translationParams";
     import type {GearInputState} from "../../stores/createGear.svelte";
     import * as uuid from "uuid"
-    import {batch,writable, type WritableSignal} from "@amadeus-it-group/tansu";
+    import {batch, type WritableSignal} from "@amadeus-it-group/tansu";
+
 
 
 
@@ -53,10 +56,9 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
         gearInputState
     }: Props = $props();
 
-    // let gearPurifyCategory = writable({} as GearPurifyCategory);// test
 
-
-    function removeGearFromCategory(gearInputState:GearInputState, gearPurifyCategory:GearPurifyCategory|null){
+    //TODO: all references to $gearPurifyCategory in this function should be replaced by gearPurifyCategory_unused
+    function removeGearFromCategory(gearInputState:GearInputState, gearPurifyCategory_unused:GearPurifyCategory|null){
 
 
         batch(()=>{
@@ -72,7 +74,9 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
 
     }
 
-    function addGearToCategory(gearInputState:GearInputState, gearPurifyCategory:GearPurifyCategory|null){
+    //TODO: all references to $gearPurifyCategory in this function should be replaced by gearPurifyCategory_unused
+    //This is the reason why "add gear to solo category" feature doesnt work.
+    function addGearToCategory(gearInputState:GearInputState, gearPurifyCategory_unused:GearPurifyCategory|null){
         if($gearPurifyCategory==null)return;
         $gearPurifyCategory.containedGear = $gearPurifyCategory.containedGear.filter((i)=>(i!==gearInputState))
         $gearPurifyCategory.containedGear.push(gearInputState);
