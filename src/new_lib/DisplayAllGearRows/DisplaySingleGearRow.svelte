@@ -154,7 +154,9 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
                                 <Button  on:click={()=>{show_all_local.update((x)=>(x=!x))}}> {$show_all_local?"Hide":"Show"} </Button>
                             {/snippet}
                 <!-- @migration-task: migrate this slot by hand, `show_all_global` would shadow a prop on the parent component -->
-    <Button slot="show_all_global_snippet" on:click={()=>{show_all_global.update((x)=>(x=!x))}}>{$show_all_global?"Hide":"Show"}</Button>
+                {#snippet show_all_global_snippet()}
+                                <Button  on:click={()=>{show_all_global.update((x)=>(x=!x))}}>{$show_all_global?"Hide":"Show"}</Button>
+                            {/snippet}
                 {#snippet show_enabled_global_snippet()}
                                 <Button  on:click={()=>{show_enabled_global.update((x)=>(x=!x))}}>{$show_enabled_global?"Hide":"Show"}</Button>
                             {/snippet}

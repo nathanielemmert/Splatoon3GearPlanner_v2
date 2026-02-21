@@ -16,6 +16,8 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
 https://svelte.dev/e/store_invalid_scoped_subscription -->
 <!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component
 https://svelte.dev/e/store_invalid_scoped_subscription -->
+<!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component
+https://svelte.dev/e/store_invalid_scoped_subscription -->
 <!-- @migration-task Error while migrating Svelte code: Cannot subscribe to stores that are not declared at the top level of the component -->
 <script lang="ts">
     import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from "@sveltestrap/sveltestrap";
@@ -45,23 +47,23 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
     function removeGearFromCategory(gearInputState:GearInputState, gearPurifyCategory:GearPurifyCategory|null){
 
 
-        batch(()=>{
-            if($gearPurifyCategory==null)return;
-            $gearPurifyCategory.containedGear = $gearPurifyCategory.containedGear.filter((i)=>(i!==gearInputState))
+        // batch(()=>{
+        //     if($gearPurifyCategory==null)return;
+        //     $gearPurifyCategory.containedGear = $gearPurifyCategory.containedGear.filter((i)=>(i!==gearInputState))
 
-            $gearPurifyCategory=null;
+        //     $gearPurifyCategory=null;
 
 
-        })
+        // })
         allGearCategories=allGearCategories;
         allGearCategoriesMap=allGearCategoriesMap;
 
     }
 
     function addGearToCategory(gearInputState:GearInputState, gearPurifyCategory:GearPurifyCategory|null){
-        if($gearPurifyCategory==null)return;
-        $gearPurifyCategory.containedGear = $gearPurifyCategory.containedGear.filter((i)=>(i!==gearInputState))
-        $gearPurifyCategory.containedGear.push(gearInputState);
+        // if($gearPurifyCategory==null)return;
+        // $gearPurifyCategory.containedGear = $gearPurifyCategory.containedGear.filter((i)=>(i!==gearInputState))
+        // $gearPurifyCategory.containedGear.push(gearInputState);
 
     }
 

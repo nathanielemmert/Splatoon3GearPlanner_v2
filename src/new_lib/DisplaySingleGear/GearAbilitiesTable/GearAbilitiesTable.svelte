@@ -19,10 +19,35 @@ import {OrderedMap} from "immutable";
 import DisplayGlobalAbilities from "./DisplayGlobalAbilities/DisplayGlobalAbilities.svelte";
 import InputLocalAbilities from "./InputLocalAbilities/InputLocalAbilities.svelte";
 
-export let show_all_global:boolean;
 
 
-export let hideResultTable:boolean;
+    interface Props {
+        show_all_global: boolean;
+        hideResultTable: boolean;
+        enable_all_global_snippet?: import('svelte').Snippet;
+        show_all_global_snippet?: import('svelte').Snippet;
+        show_disabled_global_snippet?: import('svelte').Snippet;
+        disabledGlobalAbilities_snippet?: import('svelte').Snippet;
+        show_enabled_global_snippet?: import('svelte').Snippet;
+        enabledGlobalAbilities_snippet?: import('svelte').Snippet;
+        enable_all_local_snippet?: import('svelte').Snippet;
+        show_all_local_snippet?: import('svelte').Snippet;
+        InputLocalAbilities_snippet?: import('svelte').Snippet;
+    }
+
+    let {
+        show_all_global,
+        hideResultTable,
+        enable_all_global_snippet,
+        show_all_global_snippet,
+        show_disabled_global_snippet,
+        disabledGlobalAbilities_snippet,
+        show_enabled_global_snippet,
+        enabledGlobalAbilities_snippet,
+        enable_all_local_snippet,
+        show_all_local_snippet,
+        InputLocalAbilities_snippet
+    }: Props = $props();
 
 
 
@@ -33,13 +58,13 @@ export let hideResultTable:boolean;
         <!-- <thead> -->
         <tr>
             <th>
-                <slot name="enable_all_global_snippet"/>
+                {@render enable_all_global_snippet?.()}
             </th>
             <th class="title" colspan="2">
                 Global Desired Abilities
             </th>
             <th>
-                <slot name="show_all_global_snippet"/>
+                {@render show_all_global_snippet?.()}
             </th>
         </tr>
         <!-- </thead> -->
@@ -47,34 +72,34 @@ export let hideResultTable:boolean;
         <tr class:hidden={!show_all_global}>
             <td></td>
             <td colspan="2">Disabled Global Abilities:</td>
-            <td><slot name="show_disabled_global_snippet"/></td>
+            <td>{@render show_disabled_global_snippet?.()}</td>
         </tr>
-        <slot name="disabledGlobalAbilities_snippet"/>
+        {@render disabledGlobalAbilities_snippet?.()}
 
 
 
         <tr class:hidden={!show_all_global}>
             <td></td>
             <td colspan="2">Enabled Global Abilities:</td>
-            <td><slot name="show_enabled_global_snippet"/></td>
+            <td>{@render show_enabled_global_snippet?.()}</td>
         </tr>
-        <slot name="enabledGlobalAbilities_snippet"/>
+        {@render enabledGlobalAbilities_snippet?.()}
 
 
         <!-- <thead> -->
         <tr>
             <th>
-                <slot name="enable_all_local_snippet"/>
+                {@render enable_all_local_snippet?.()}
             </th>
             <th class="title" colspan="2">
                 Local Desired Abilities
             </th>
             <th>
-                <slot name="show_all_local_snippet"/>
+                {@render show_all_local_snippet?.()}
             </th>
         </tr>
         <!-- </thead> -->
-        <slot name="InputLocalAbilities_snippet"/>
+        {@render InputLocalAbilities_snippet?.()}
 
     </tbody></table>
 {/if}
