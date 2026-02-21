@@ -30,40 +30,52 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
     import {gearNameParams} from "../../../assets/translationParams";
     import type {GearInputState} from "../../stores/createGear.svelte";
     import * as uuid from "uuid"
-    import {batch, type WritableSignal} from "@amadeus-it-group/tansu";
+    import {batch,writable, type WritableSignal} from "@amadeus-it-group/tansu";
 
 
 
-    export let allGearCategoriesMap:ReturnType<typeof createGearPurifyCategoryMap>;
-    export let allGearCategories:GearPurifyCategory[];
 
-    // export let gearPurifyCategory:WritableSignal<GearPurifyCategory | null,GearPurifyCategory|null>;
-    export let gearPurifyCategory : WritableSignal<GearPurifyCategory | null>;
+    
 
 
-    export let gearInputState:GearInputState;
+    interface Props {
+        allGearCategoriesMap: ReturnType<typeof createGearPurifyCategoryMap>;
+        allGearCategories: GearPurifyCategory[];
+        // export let gearPurifyCategory:WritableSignal<GearPurifyCategory | null,GearPurifyCategory|null>;
+        gearPurifyCategory: WritableSignal<GearPurifyCategory | null>;
+        gearInputState: GearInputState;
+    }
+
+    let {
+        allGearCategoriesMap = $bindable(),
+        allGearCategories = $bindable(),
+        gearPurifyCategory ,
+        gearInputState
+    }: Props = $props();
+
+    // let gearPurifyCategory = writable({} as GearPurifyCategory);// test
 
 
     function removeGearFromCategory(gearInputState:GearInputState, gearPurifyCategory:GearPurifyCategory|null){
 
 
-        // batch(()=>{
-        //     if($gearPurifyCategory==null)return;
-        //     $gearPurifyCategory.containedGear = $gearPurifyCategory.containedGear.filter((i)=>(i!==gearInputState))
+        batch(()=>{
+            if($gearPurifyCategory==null)return;
+            $gearPurifyCategory.containedGear = $gearPurifyCategory.containedGear.filter((i)=>(i!==gearInputState))
 
-        //     $gearPurifyCategory=null;
+            $gearPurifyCategory=null;
 
 
-        // })
+        })
         allGearCategories=allGearCategories;
         allGearCategoriesMap=allGearCategoriesMap;
 
     }
 
     function addGearToCategory(gearInputState:GearInputState, gearPurifyCategory:GearPurifyCategory|null){
-        // if($gearPurifyCategory==null)return;
-        // $gearPurifyCategory.containedGear = $gearPurifyCategory.containedGear.filter((i)=>(i!==gearInputState))
-        // $gearPurifyCategory.containedGear.push(gearInputState);
+        if($gearPurifyCategory==null)return;
+        $gearPurifyCategory.containedGear = $gearPurifyCategory.containedGear.filter((i)=>(i!==gearInputState))
+        $gearPurifyCategory.containedGear.push(gearInputState);
 
     }
 

@@ -10,7 +10,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
-    "@amadeus-it-group/tansu": "^0.0.24",
+    "@amadeus-it-group/tansu": "^2.0.0",
     "@sveltejs/svelte-virtual-list": "^3.0.1",
     "@sveltestrap/sveltestrap": "^7.1.0",
     "array-keyed-map": "^2.1.3",

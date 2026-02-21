@@ -8,6 +8,7 @@
 <!-- @migration-task Error while migrating Svelte code: Cannot set properties of undefined (setting 'next') -->
 <!-- @migration-task Error while migrating Svelte code: Cannot set properties of undefined (setting 'next') -->
 <!-- @migration-task Error while migrating Svelte code: Cannot set properties of undefined (setting 'next') -->
+<!-- @migration-task Error while migrating Svelte code: Cannot set properties of undefined (setting 'next') -->
 <!-- @migration-task Error while migrating Svelte code: Text node is invalid inside `<tbody>` -->
 <script lang="ts">
     import {writable} from "@amadeus-it-group/tansu";
