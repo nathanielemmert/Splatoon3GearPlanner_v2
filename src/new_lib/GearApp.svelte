@@ -7,16 +7,24 @@
     import { ALL_SUB_ABILITIES } from "./types/helperFunctions";
     import DisplayAllGear from "./DisplayAllGear.svelte";
     import InputDesiredAbilities from "./SingleUseInputs/InputDesiredAbilities/InputDesiredAbilities.svelte";
-    import {global_desired_abilities, globalHowFarToCheck} from "./stores/globalSettings";
+    import {global_desired_abilities, globalHowFarToCheck} from "./stores/globalSettings.svelte";
     import InputHowFarToCheck from "./DisplaySingleGear/SingleGearInputs/InputHowFarToCheck.svelte";
 
 
 
 
-    let userGearDatabase:GearSeedDatabase = $derived(userGearDatabase);
+    let userGearDatabase:GearSeedDatabase = $state();
+    $inspect(userGearDatabase)
 
     let userGearDatabaseStore=writable<GearSeedDatabase>();
+        $inspect(userGearDatabase)
     setContext("userGearDatabaseStore",userGearDatabaseStore);
+
+    $effect(()=>{
+        $userGearDatabaseStore = userGearDatabase;
+    })
+
+
     
 
     let allowed_drinks:Ticket[]=[];

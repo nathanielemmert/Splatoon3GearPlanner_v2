@@ -17,6 +17,7 @@
     "collections-deep-equal": "^3.0.1",
     "eslint-plugin-svelte": "^3.15.0",
     "immutable": "^5.0.0-beta.4",
+    "svelte-virtual-table": "^2.0.3",
     "uuid": "^9.0.1",
     "vite-plugin-wasm": "^3.5.0",
     "wasm-splatoon-gear-checker": "file:./wasm-splatoon-gear-checker/pkg",

@@ -6,15 +6,16 @@
     import DisplayGearCategories from "./DisplayGearCategories/DisplayGearCategories.svelte";
     import PurifyAllGear from "./PurifyAllGear/PurifyAllGear.svelte";
     import {Progress} from "@sveltestrap/sveltestrap";
-    import type {GearInputState} from "./stores/createGear";
-    import {createGear} from "./stores/createGear";
+    import type {GearInputState} from "./stores/createGear.svelte";
+    import {createGear} from "./stores/createGear.svelte";
     import DisplaySingleGearRow from "./DisplayAllGearRows/DisplaySingleGearRow.svelte";
     import InputDesiredAbilities from "./SingleUseInputs/InputDesiredAbilities/InputDesiredAbilities.svelte";
     import {onMount} from "svelte";
-    import MyVirtualTable from "../svelte_virtual_table/MyVirtualTable.svelte";
+    import VirtualTable from "svelte-virtual-table";
+    // import MyVirtualTable from "../svelte_virtual_table/MyVirtualTable.svelte";
 
 
-    let gearDb= userGearDatabase.GearDB;
+    
 
 
     interface Props {
@@ -24,6 +25,8 @@
     }
 
     let { userGearDatabase, global_desired_abilities = $bindable(), allowed_drinks }: Props = $props();
+
+    // let gearDb= userGearDatabase.GearDB;
 
 
 
@@ -115,13 +118,13 @@
     <br/><br/><br/><br/><br/>
 
 
-    <MyVirtualTable
+    <VirtualTable
             requireBorderCollapse={false}
             items={tableItems}
             start={0}
             end={20}
-            class="svelte-virtual-gear-table"
-            fixedColWidth
+            className="svelte-virtual-gear-table"
+            // fixedColWidth
     >
         {#snippet thead()}
                 <tr  role="row">
@@ -137,14 +140,14 @@
                 <th>Show Gear Abilities</th>
             </tr>
             {/snippet}
-        {#snippet tbody({ item: item, index })}
+        {#snippet trow( item, index )}
             
                 {@const {gearInputState,rowType} = item}
                 <DisplaySingleGearRow {gearInputState} {rowType} bind:allGearCategoriesMap bind:allGearCategories bind:global_desired_abilities hidden={index==-1} />
             
             {/snippet}
 
-    </MyVirtualTable>
+    </VirtualTable>
 {/if}
 
 
