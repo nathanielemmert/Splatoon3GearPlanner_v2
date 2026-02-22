@@ -17,7 +17,7 @@
     $inspect(userGearDatabase)
 
     let userGearDatabaseStore=writable<GearSeedDatabase>();
-        $inspect(userGearDatabase)
+    $inspect(userGearDatabase)
     setContext("userGearDatabaseStore",userGearDatabaseStore);
 
     $effect(()=>{

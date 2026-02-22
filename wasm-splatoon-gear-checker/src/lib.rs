@@ -4,7 +4,6 @@
 #![allow(dead_code)]
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case )]*/
-mod old;
 mod old_main;
 mod js_wrappers;
 mod new_rewrite;
@@ -32,10 +31,10 @@ use crate::new_rewrite::purify_multiple_gear::gear_category::GearCategory;
 use crate::new_rewrite::purify_multiple_gear::gear_purifier::GearPurifier;
 use crate::new_rewrite::purify_multiple_gear::multi_gear_result::MultiGearResult;
 // use crate::old::custom_objects::{ExternalGear, GearPlan, InternalGear, SixteenAbilityCombo_Value, TicketCombo_N_Length, TicketSetCombo, TicketValue};
-use crate::old::leanny_utils::get_ability;
-use crate::old::leanny_params::{INTERNAL_ABILITY_NAMES, INTERNAL_BRAND_NAMES};
-use crate::old::process_single_gear::purify_single_gear;
-use crate::old::purify_multiple_gear::purify_all_gear;
+// use crate::old::leanny_utils::get_ability;
+// use crate::old::leanny_params::{INTERNAL_ABILITY_NAMES, INTERNAL_BRAND_NAMES};
+// use crate::old::process_single_gear::purify_single_gear;
+// use crate::old::purify_multiple_gear::purify_all_gear;
 // use crate::old_main::{DrinkArray, MultipleGearResult, old_purify_single_gear_js, SingleGearResult};
 
 

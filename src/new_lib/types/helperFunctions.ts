@@ -1,5 +1,6 @@
 import {LeannyDrink, LeannySubAbility, SubAbility, Ticket} from "wasm-splatoon-gear-checker/wasm_splatoon_gear_checker"
 
+
 export function transformLeannyDrinkIntoTicket(drink:LeannyDrink):Ticket{
     switch(drink){
         case LeannyDrink.None:

@@ -43,16 +43,17 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
         allGearCategoriesMap: ReturnType<typeof createGearPurifyCategoryMap>;
         global_desired_abilities: SubAbility[][];
         allGearCategories?: GearPurifyCategory[];
-        rowType: "first"|"second";
+        rowType: "first"|"second"|null;
         hidden?: boolean;
     }
+
 
     let {
         gearInputState = $bindable(),
         allGearCategoriesMap = $bindable(),
-        global_desired_abilities,
+        global_desired_abilities = $bindable(),
         allGearCategories = $bindable([]),
-        rowType,
+        rowType = null,
         hidden = false
     }: Props = $props();
 
@@ -145,47 +146,56 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
                                 hideResultTable={$hideResultTable}
             >
                 {#snippet enable_all_global_snippet()}
-                                <input  type="checkbox" bind:checked={$enable_all_global}/>
-                            {/snippet}
+                    <input  type="checkbox" bind:checked={$enable_all_global}/>
+                {/snippet}
+
                 {#snippet enable_all_local_snippet()}
-                                <input   type="checkbox" bind:checked={$enable_all_local}/>
-                            {/snippet}
+                    <input   type="checkbox" bind:checked={$enable_all_local}/>
+                {/snippet}
+
                 {#snippet show_all_local_snippet()}
-                                <Button  on:click={()=>{show_all_local.update((x)=>(x=!x))}}> {$show_all_local?"Hide":"Show"} </Button>
-                            {/snippet}
+                    <Button  on:click={()=>{show_all_local.update((x)=>(x=!x))}}> {$show_all_local?"Hide":"Show"} </Button>
+                    {/snippet}
+                    
                 <!-- @migration-task: migrate this slot by hand, `show_all_global` would shadow a prop on the parent component -->
                 {#snippet show_all_global_snippet()}
-                                <Button  on:click={()=>{show_all_global.update((x)=>(x=!x))}}>{$show_all_global?"Hide":"Show"}</Button>
-                            {/snippet}
+                    <Button  on:click={()=>{show_all_global.update((x)=>(x=!x))}}>{$show_all_global?"Hide":"Show"}</Button>
+                {/snippet}
+
                 {#snippet show_enabled_global_snippet()}
-                                <Button  on:click={()=>{show_enabled_global.update((x)=>(x=!x))}}>{$show_enabled_global?"Hide":"Show"}</Button>
-                            {/snippet}
+                    <Button  on:click={()=>{show_enabled_global.update((x)=>(x=!x))}}>{$show_enabled_global?"Hide":"Show"}</Button>
+                {/snippet}
+
                 {#snippet show_disabled_global_snippet()}
-                                <Button  on:click={()=>{show_disabled_global.update((x)=>(x=!x))}}>{$show_disabled_global?"Hide":"Show"}</Button>
-                            {/snippet}
+                    <Button  on:click={()=>{show_disabled_global.update((x)=>(x=!x))}}>{$show_disabled_global?"Hide":"Show"}</Button>
+                {/snippet}
+
                 {#snippet disabledGlobalAbilities_snippet()}
-                                <DisplayGlobalAbilities 
-                                            type="disabledAbilities"
-                                            single_gear_result={$single_gear_result}
-                                            bind:global_desired_abilities_map={$global_desired_abilities_map}
-                                            {global_desired_abilities}
-                                            hidden={!$show_disabled_global||!$show_all_global}/>
-                            {/snippet}
+                    <DisplayGlobalAbilities 
+                                type="disabledAbilities"
+                                single_gear_result={$single_gear_result}
+                                bind:global_desired_abilities_map={$global_desired_abilities_map}
+                                {global_desired_abilities}
+                                hidden={!$show_disabled_global||!$show_all_global}/>
+                {/snippet}
+
                 {#snippet enabledGlobalAbilities_snippet()}
-                                <DisplayGlobalAbilities 
-                                            type= "enabledAbilities"
-                                            single_gear_result={$single_gear_result}
-                                            bind:global_desired_abilities_map={$global_desired_abilities_map}
-                                            {global_desired_abilities}
-                                            hidden={!$show_enabled_global||!$show_all_global}/>
-                            {/snippet}
+                    <DisplayGlobalAbilities 
+                                type= "enabledAbilities"
+                                single_gear_result={$single_gear_result}
+                                bind:global_desired_abilities_map={$global_desired_abilities_map}
+                                {global_desired_abilities}
+                                hidden={!$show_enabled_global||!$show_all_global}/>
+                {/snippet}
+
                 {#snippet InputLocalAbilities_snippet()}
-                                <InputLocalAbilities 
-                                         bind:local_desired_abilities={$local_desired_abilities}
-                                         bind:local_desired_abilities_map={$local_desired_abilities_map}
-                                         single_gear_result={$single_gear_result}
-                                         hidden={!$show_all_local} />
-                            {/snippet}
+                    <InputLocalAbilities 
+                                bind:local_desired_abilities={$local_desired_abilities}
+                                bind:local_desired_abilities_map={$local_desired_abilities_map}
+                                single_gear_result={$single_gear_result}
+                                hidden={!$show_all_local} />
+                {/snippet}
+
             </GearAbilitiesTable>
         </td>
     </tr>

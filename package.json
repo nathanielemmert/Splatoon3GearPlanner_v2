@@ -15,7 +15,6 @@
     "@sveltestrap/sveltestrap": "^7.1.0",
     "array-keyed-map": "^2.1.3",
     "collections-deep-equal": "^3.0.1",
-    "eslint-plugin-svelte": "^3.15.0",
     "immutable": "^5.0.0-beta.4",
     "svelte-virtual-table": "^2.0.3",
     "uuid": "^9.0.1",
@@ -24,13 +23,17 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@sveltejs/vite-plugin-svelte": "^4.0.0",
-    "@tsconfig/svelte": "^5.0.0",
+    "@tsconfig/svelte": "^5.0.8",
     "@types/uuid": "^9.0.7",
+    "eslint": "^10.0.1",
+    "eslint-plugin-svelte": "^3.15.0",
     "svelte": "^5.53.0",
-    "svelte-check": "^4.0.0",
+    "svelte-check": "^4.4.3",
     "tslib": "^2.6.0",
-    "typescript": "^5.5.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.0",
     "vite": "^5.4.4",
     "wasm-splatoon-gear-checker": "file:./wasm-splatoon-gear-checker/pkg"
   }

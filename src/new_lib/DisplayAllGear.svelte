@@ -139,13 +139,13 @@
                 <th>How far to check?</th>
                 <th>Show Gear Abilities</th>
             </tr>
-            {/snippet}
+        {/snippet}
         {#snippet trow( item, index )}
             
                 {@const {gearInputState,rowType} = item}
                 <DisplaySingleGearRow {gearInputState} {rowType} bind:allGearCategoriesMap bind:allGearCategories bind:global_desired_abilities hidden={index==-1} />
             
-            {/snippet}
+        {/snippet}
 
     </VirtualTable>
 {/if}

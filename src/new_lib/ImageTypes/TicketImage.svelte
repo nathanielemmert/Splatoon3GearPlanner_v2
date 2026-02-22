@@ -1,6 +1,6 @@
 <script lang="ts">
     import { ability_filenames } from "../../assets/abilityParams";
-    import {Ticket} from "../../../wasm-splatoon-gear-checker/pkg/wasm_splatoon_gear_checker";
+    import {Ticket} from "../../../wasm-splatoon-gear-checker";
 
     interface Props {
         abilityId: Ticket;

@@ -52,8 +52,8 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
     let {
         allGearCategoriesMap = $bindable(),
         allGearCategories = $bindable(),
-        gearPurifyCategory ,
-        gearInputState
+        gearPurifyCategory = $bindable(),
+        gearInputState = $bindable()
     }: Props = $props();
 
 
