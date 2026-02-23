@@ -9,7 +9,6 @@ mod js_wrappers;
 mod new_rewrite;
 pub mod utils;
 
-
 use std::cell::RefCell;
 use std::collections::{HashMap, HashSet};
 use std::convert::{TryFrom, TryInto};
@@ -23,7 +22,7 @@ use wasm_bindgen::prelude::*;
 use wasm_bindgen_test::__rt::log;
 use wasm_bindgen_test::console_log;
 // use crate::js_wrappers::{ExternalGear, ExternalGearArray};
-use crate::new_rewrite::custom_objects::ability_types::{Drink, SubAbility, Ticket};
+// use crate::new_rewrite::custom_objects::ability_types::{Drink, SubAbility, Ticket};
 use crate::new_rewrite::custom_objects::brand_types::Brand;
 use crate::new_rewrite::custom_objects::collection_types::{AbilityCombo, AbilitySet, TicketSet};
 use crate::new_rewrite::custom_objects::gear_types::Gear;
@@ -45,6 +44,7 @@ extern crate lazy_static;
 extern "C" {
     fn alert(s: &str);
 }
+
 
 
 
