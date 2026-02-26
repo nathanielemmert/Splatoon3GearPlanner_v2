@@ -18,8 +18,11 @@
 
     let userGearDatabaseStore=writable<GearSeedDatabase>();
     $inspect(userGearDatabase)
-    setContext("userGearDatabaseStore",userGearDatabaseStore);
 
+    // 2026 TODO: my end goal is to remove the userGearDatabaseStore variable, and just have one userGearDatabase variable.
+    setContext("userGearDatabaseStore",userGearDatabaseStore);
+    //
+    
     $effect(()=>{
         $userGearDatabaseStore = userGearDatabase;
     })
