@@ -1,5 +1,6 @@
 
 
+import type { SubAbility } from "wasm-splatoon-gear-checker/pkg/wasm_splatoon_gear_checker";
 import {ALL_SUB_ABILITIES} from "../types/helperFunctions";
 import {writable} from "@amadeus-it-group/tansu";
 
@@ -21,7 +22,7 @@ export let forcedTicketDepthLimit=writable(3);
 // separate setting for *Force checked* ticket depth limit.
 //     e.g. CAN go up to 5, ALWAYS go to at least 4.
 
-export let global_desired_abilities = writable(ALL_SUB_ABILITIES.map(i =>[i,i,i]),IMMUTABLE_STORE_OPTIONS);
+export let global_desired_abilities = writable<SubAbility[][]>(ALL_SUB_ABILITIES.map(i =>[i,i,i]),IMMUTABLE_STORE_OPTIONS);
 // global_desired_abilities.subscribe(()=>console.log("global_desired_abilities_map"))
 
 

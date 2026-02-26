@@ -24,10 +24,11 @@
         allowed_drinks: Ticket[];
     }
 
-    let { userGearDatabase, global_desired_abilities = $bindable(), allowed_drinks }: Props = $props();
-
-    // let gearDb= userGearDatabase.GearDB;
-
+    let { 
+        userGearDatabase,// could be replaced with getContext()
+        global_desired_abilities = $bindable(),
+        allowed_drinks 
+    }: Props = $props();
 
 
     let allDisplayedGear:GearInputState[] = $state([]);
@@ -89,22 +90,9 @@
     }
 
 
-
-
-
-
-
-
     onMount(async ()=>{
         await initialize_app();
     })
-
-
-
-
-
-
-
     
 </script>
 
@@ -114,6 +102,7 @@
 {:else}
     <InputDesiredAbilities bind:desired_abilities={global_desired_abilities}/>
     <DisplayGearCategories bind:allGearCategories bind:allGearCategoriesMap bind:allDisplayedGear {global_desired_abilities}/>
+    <!-- TODO: Would it make more sense to pass allGearCategoriesMap and allGearCategories as setContext() instead of prop drilling? -->
     <PurifyAllGear {allGearCategories} />
     <br/><br/><br/><br/><br/>
 
@@ -144,7 +133,8 @@
             
                 {@const {gearInputState,rowType} = item}
                 <DisplaySingleGearRow {gearInputState} {rowType} bind:allGearCategoriesMap bind:allGearCategories bind:global_desired_abilities hidden={index==-1} />
-            
+                <!-- TODO: Would it make more sense to pass allGearCategoriesMap and allGearCategories as setContext() instead of prop drilling? -->
+
         {/snippet}
 
     </VirtualTable>

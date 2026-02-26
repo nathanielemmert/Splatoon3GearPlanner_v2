@@ -48,9 +48,11 @@
     let {
         allGearCategories = $bindable(),
         allGearCategoriesMap = $bindable(),
-        allDisplayedGear,
+        allDisplayedGear = $bindable(),
         open = $bindable()
     }: Props = $props();
+
+    
     const toggle = ()=>{
         open=!open
         if(!open){
@@ -64,7 +66,7 @@
     });
 
     function createPureGearCategory(auto_add:boolean){
-        let newCategory:PureGearCategory = {type: "pure", gearType, subAbility, containedGear:[]}
+        let newCategory:PureGearCategory = {type: "pure", gearType, subAbility, containedGear:[]}; //TODO: ContainedGear needs to be more reactive. When i remove gear from category, DisplaySingleGearCategory should rerender
         if(allGearCategoriesMap.pure.get(gearType)?.get(subAbility)==null){
             allGearCategoriesMap.pure.get(gearType)?.set(subAbility,newCategory)
             allGearCategoriesMap=allGearCategoriesMap;

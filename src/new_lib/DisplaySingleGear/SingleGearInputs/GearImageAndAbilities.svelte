@@ -14,8 +14,8 @@
 
     let { gearType, gearId }: Props = $props();
 
-    const gearSeedDatabase=getContext<Writable<GearSeedDatabase>>("userGearDatabaseStore");
-    let gear = $derived($gearSeedDatabase.GearDB[`HaveGear${gearType}Map`][gearId])
+    const gearSeedDatabase=getContext<{state:GearSeedDatabase}>("userGearDatabaseStore");
+    let gear = $derived(gearSeedDatabase.state.GearDB[`HaveGear${gearType}Map`][gearId])
 </script>
 
 

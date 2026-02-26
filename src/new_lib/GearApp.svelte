@@ -13,20 +13,17 @@
 
 
 
-    let userGearDatabase:GearSeedDatabase = $state();
-    $inspect(userGearDatabase)
+    let userGearDatabase = $state({state:null as GearSeedDatabase});
 
-    let userGearDatabaseStore=writable<GearSeedDatabase>();
-    $inspect(userGearDatabase)
 
-    // 2026 TODO: my end goal is to remove the userGearDatabaseStore variable, and just have one userGearDatabase variable.
-    setContext("userGearDatabaseStore",userGearDatabaseStore);
-    //
+
+    setContext<{state:GearSeedDatabase}>("userGearDatabaseStore",userGearDatabase);// could use createContext instead of setContext() https://svelte.dev/docs/svelte/context#Type-safe-context
+    /* 
+    There is only one usage of userGearDatabaseStore, so it should be easy to refactor 
+    Usages of getContext("userGearDatabaseStore")
+        - new_lib/DisplaySingleGear/SingleGearInputs/GearImageAndAbilities.svelte
+    */
     
-    $effect(()=>{
-        $userGearDatabaseStore = userGearDatabase;
-    })
-
 
     
 
@@ -35,16 +32,16 @@
 
 </script>
 
-<JsonFileInput bind:gearSeedDatabase={userGearDatabase} /><br/>
-{#if $userGearDatabaseStore}
+<JsonFileInput bind:gearSeedDatabase={userGearDatabase.state} /><br/>
+{#if userGearDatabase.state!=null}
     <div class="number-input"><InputHowFarToCheck bind:how_far_to_check={$globalHowFarToCheck}/></div>
 <!--
     <div class="number-input"><InputTicketDepthLimit bind:ticketDepthLimit/></div>
     <InputAllowedDrinks bind:allowed_drinks/>
     <GearSortAndFilter bind:gearFilters bind:singleGearResultFilters/> -->
 
-    <DisplayAllGear {userGearDatabase} howFarToCheck={$globalHowFarToCheck} global_desired_abilities={$global_desired_abilities} {allowed_drinks}/>
-<!--     <MultipleGearTable {multipleGearResult} {resultIndexToGearId} {userGearDatabase}/> -->
+    <DisplayAllGear userGearDatabase = {userGearDatabase.state} global_desired_abilities={$global_desired_abilities} {allowed_drinks}/> <!-- howFarToCheck={$globalHowFarToCheck} -->
+<!--<MultipleGearTable {multipleGearResult} {resultIndexToGearId} {userGearDatabase}/> -->
 {/if}
 
 

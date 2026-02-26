@@ -43,7 +43,7 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
         allGearCategoriesMap: ReturnType<typeof createGearPurifyCategoryMap>;
         global_desired_abilities: SubAbility[][];
         allGearCategories?: GearPurifyCategory[];
-        rowType: "first"|"second"|null;
+        rowType?: "first"|"second"|null;
         hidden?: boolean;
     }
 
@@ -97,11 +97,6 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
     });
 
 </script>
-
-{#snippet hideResultTable2()}
-                        <HideResultTableButton  bind:hideResultTable={$hideResultTable}/>
-{/snippet}
-
 
 {#if rowType=="first"||rowType==null}
     <tr style={hidden?"visibility:collapse;":""}>

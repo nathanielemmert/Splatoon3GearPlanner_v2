@@ -15,7 +15,7 @@ https://svelte.dev/e/each_item_invalid_assignment -->
     }
 
     let {
-        allDisplayedGear,
+        allDisplayedGear = $bindable(),
         allGearCategoriesMap = $bindable(),
         global_desired_abilities = $bindable(),
         allGearCategories = $bindable([])
