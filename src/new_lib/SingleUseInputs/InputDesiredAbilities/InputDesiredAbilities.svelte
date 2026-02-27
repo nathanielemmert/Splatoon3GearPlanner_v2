@@ -16,7 +16,10 @@
         desired_abilities: SubAbility[][];
     }
 
-    let { desired_abilities = $bindable() }: Props = $props();
+    let { 
+        desired_abilities = $bindable() 
+    }: Props = $props();
+
     const blank_ability_combo = [LeannySubAbility.None, LeannySubAbility.None, LeannySubAbility.None] as const;
 
     let next_ability_combo = $state([...blank_ability_combo]);
@@ -35,7 +38,7 @@
     }
 
     function onSubmit(i:number, new_ability_combo:SubAbility[]) {
-        console.log(new_ability_combo, desired_abilities[i])
+        console.log("ON SUBMIT",new_ability_combo, desired_abilities[i])
         if (new_ability_combo === desired_abilities[i] ){
             return
         }

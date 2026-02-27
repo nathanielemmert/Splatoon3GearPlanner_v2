@@ -1,6 +1,6 @@
 
 
-import type { SubAbility } from "wasm-splatoon-gear-checker/pkg/wasm_splatoon_gear_checker";
+import type { SubAbility } from "wasm-splatoon-gear-checker";
 import {ALL_SUB_ABILITIES} from "../types/helperFunctions";
 import {writable} from "@amadeus-it-group/tansu";
 

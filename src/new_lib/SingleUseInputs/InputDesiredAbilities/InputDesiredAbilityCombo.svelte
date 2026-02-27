@@ -11,7 +11,12 @@
         allowBlankAbility?: boolean;
     }
 
-    let { ability_combo, onSubmit, allowBlankAbility = false }: Props = $props();
+    let { 
+        ability_combo,
+        onSubmit,
+        allowBlankAbility = false 
+    }: Props = $props();
+
     // let abilityIds = [...ability_combo] as unknown as LeannySubAbility[]
     let abilityIds:LeannySubAbility[] = $state();
     function setAbilityIds(x){abilityIds=x}
@@ -59,7 +64,7 @@
             return
         }
         console.log("ON SAVE CHANGES")
-        onSubmit(abilityIds as unknown as SubAbility[])
+        onSubmit($state.snapshot(abilityIds as unknown as SubAbility[]))        
     }
 
 </script>

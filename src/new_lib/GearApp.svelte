@@ -28,7 +28,7 @@
     <InputAllowedDrinks bind:allowed_drinks/>
     <GearSortAndFilter bind:gearFilters bind:singleGearResultFilters/> -->
 
-    <DisplayAllGear userGearDatabase = {userGearDatabase.state} global_desired_abilities={$global_desired_abilities} {allowed_drinks}/> <!-- howFarToCheck={$globalHowFarToCheck} -->
+    <DisplayAllGear userGearDatabase = {userGearDatabase.state} bind:global_desired_abilities={$global_desired_abilities} {allowed_drinks}/> <!-- howFarToCheck={$globalHowFarToCheck} -->
 <!--<MultipleGearTable {multipleGearResult} {resultIndexToGearId} {userGearDatabase}/> -->
 {/if}
 
