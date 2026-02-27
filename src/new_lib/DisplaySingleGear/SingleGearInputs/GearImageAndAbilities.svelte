@@ -2,10 +2,10 @@
     import SubAbilityImages from "../../ImageTypes/SubAbilityImages.svelte";
     import GearImage from "../../ImageTypes/GearImage.svelte";
     import MainAbilityImage from "../../ImageTypes/MainAbilityImage.svelte";
-    import {getContext} from "svelte";
     import {type Writable} from "svelte/store";
     import {type GearSeedDatabase} from "../../types/typesLeanny";
     import {type GearType} from "../../types/gearTypes";
+    import { getContext_userGearDatabase } from "@/new_lib/stores/contexts.svelte";
 
     interface Props {
         gearType: GearType;
@@ -14,7 +14,7 @@
 
     let { gearType, gearId }: Props = $props();
 
-    const gearSeedDatabase=getContext<{state:GearSeedDatabase}>("userGearDatabaseStore");
+    const gearSeedDatabase=getContext_userGearDatabase();
     let gear = $derived(gearSeedDatabase.state.GearDB[`HaveGear${gearType}Map`][gearId])
 </script>
 

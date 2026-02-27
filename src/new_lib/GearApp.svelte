@@ -9,26 +9,14 @@
     import InputDesiredAbilities from "./SingleUseInputs/InputDesiredAbilities/InputDesiredAbilities.svelte";
     import {global_desired_abilities, globalHowFarToCheck} from "./stores/globalSettings.svelte";
     import InputHowFarToCheck from "./DisplaySingleGear/SingleGearInputs/InputHowFarToCheck.svelte";
-
+    import {setContext_userGearDatabase} from "./stores/contexts.svelte"
 
 
 
     let userGearDatabase = $state({state:null as GearSeedDatabase});
-
-
-
-    setContext<{state:GearSeedDatabase}>("userGearDatabaseStore",userGearDatabase);// could use createContext instead of setContext() https://svelte.dev/docs/svelte/context#Type-safe-context
-    /* 
-    There is only one usage of userGearDatabaseStore, so it should be easy to refactor 
-    Usages of getContext("userGearDatabaseStore")
-        - new_lib/DisplaySingleGear/SingleGearInputs/GearImageAndAbilities.svelte
-    */
-    
-
-    
+    setContext_userGearDatabase(userGearDatabase);
 
     let allowed_drinks:Ticket[]=[];
-
 
 </script>
 

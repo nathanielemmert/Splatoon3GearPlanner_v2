@@ -1,6 +1,5 @@
 <script lang="ts">
     import {GearType} from "../types/gearTypes";
-    import {getContext} from "svelte";
     import {gearInfoParams as gearInfoParams} from "../../assets/gearInfoParams";
     interface Props {
         RowId?: string;

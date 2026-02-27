@@ -1,6 +1,6 @@
 <script lang="ts">
     import {Button} from "@sveltestrap/sveltestrap";
-    import {getContext, setContext} from "svelte";
+    import {getContext} from "svelte";
     import type {ReadableSignal, WritableSignal} from "@amadeus-it-group/tansu";
     import {readable} from "@amadeus-it-group/tansu";
 
