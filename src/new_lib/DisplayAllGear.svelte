@@ -131,10 +131,10 @@
                 <th>Show Gear Abilities</th>
             </tr>
         {/snippet}
-        {#snippet trow( item, index )}
+        {#snippet trow( item:typeof tableItems[number], index )}
             
                 {@const {gearInputState,rowType} = item}
-                <DisplaySingleGearRow bind:gearInputState={item.gearInputState} {rowType} bind:allGearCategoriesMap bind:allGearCategories bind:global_desired_abilities hidden={index==-1} />
+                <DisplaySingleGearRow gearInputState={item.gearInputState} {rowType} bind:allGearCategoriesMap bind:allGearCategories {global_desired_abilities} hidden={index==-1} />
                 <!-- TODO: Would it make more sense to pass allGearCategoriesMap and allGearCategories as setContext() instead of prop drilling? -->
 
         {/snippet}

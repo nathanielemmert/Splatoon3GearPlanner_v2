@@ -49,9 +49,9 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
 
 
     let {
-        gearInputState = $bindable(),
+        gearInputState,
         allGearCategoriesMap = $bindable(),
-        global_desired_abilities = $bindable(),
+        global_desired_abilities,
         allGearCategories = $bindable([]),
         rowType = null,
         hidden = false
@@ -113,7 +113,7 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
                     <InputGearPurifyCategory
                             bind:allGearCategories
                             bind:allGearCategoriesMap
-                            bind:gearInputState
+                            {gearInputState}
                             bind:gearPurifyCategory
                     />
                 </div>

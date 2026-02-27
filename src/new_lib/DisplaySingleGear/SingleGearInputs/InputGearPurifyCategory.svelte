@@ -53,7 +53,7 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
         allGearCategoriesMap = $bindable(),
         allGearCategories = $bindable(),
         gearPurifyCategory = $bindable(),
-        gearInputState = $bindable()
+        gearInputState 
     }: Props = $props();
 
 
