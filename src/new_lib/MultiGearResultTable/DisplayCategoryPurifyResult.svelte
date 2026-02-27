@@ -5,7 +5,7 @@ import SmallGearImage from "../ImageTypes/SmallGearImage.svelte";
 import MainAbilityImage from "../ImageTypes/MainAbilityImage.svelte";
 import SubAbilityImages from "../ImageTypes/SubAbilityImages.svelte";
 import GearImage from "../ImageTypes/GearImage.svelte";
-import type {GearInputState, GearPurifyCategory} from "../types/gearTypes";
+import type {GearInputState, GearPurifyCategory} from "../types/gearCategoryTypes";
 import type {TicketComboPurifyResult} from "wasm-splatoon-gear-checker";
 import TicketComboImages from "../ImageTypes/TicketComboImages.svelte";
 import GearSlotImage from "../ImageTypes/GearSlotImage.svelte";

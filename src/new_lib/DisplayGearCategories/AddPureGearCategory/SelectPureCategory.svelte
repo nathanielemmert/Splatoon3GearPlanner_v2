@@ -5,7 +5,7 @@
     import type {LeannySubAbility} from "wasm-splatoon-gear-checker";
     import {SubAbility} from "wasm-splatoon-gear-checker";
     import SmallSubAbilityImages from "../../ImageTypes/SmallSubAbilityImages.svelte";
-    import {createGearPurifyCategoryMap} from "../../types/gearTypes";
+    import {createGearPurifyCategoryMap} from "../../types/gearCategoryTypes";
 
     interface Props {
         gearType: GearType;

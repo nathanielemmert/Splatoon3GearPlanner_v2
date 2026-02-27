@@ -1,7 +1,7 @@
 <script lang="ts">
     import { run } from 'svelte/legacy';
 
-    import type {GearInputState, GearPurifyCategory} from "../types/gearTypes";
+    import type {GearInputState, GearPurifyCategory} from "../types/gearCategoryTypes";
     import type {TicketCombo, TicketComboPurifyResult} from "wasm-splatoon-gear-checker";
     import GearImage from "../ImageTypes/GearImage.svelte";
     import {Button, Card, CardBody, CardHeader, Input, Table} from "@sveltestrap/sveltestrap";

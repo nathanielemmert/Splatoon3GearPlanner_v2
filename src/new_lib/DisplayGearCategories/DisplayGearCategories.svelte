@@ -1,6 +1,6 @@
 
 <script lang="ts">
-    import {createGearPurifyCategoryMap,  type GearPurifyCategory} from "../types/gearTypes";
+    import {createGearPurifyCategoryMap,  type GearPurifyCategory} from "../types/gearCategoryTypes";
     import {
         Button,
         ButtonDropdown,

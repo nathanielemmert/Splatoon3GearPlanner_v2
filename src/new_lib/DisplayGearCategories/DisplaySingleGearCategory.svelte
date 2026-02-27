@@ -11,8 +11,8 @@
         DropdownMenu,
         DropdownToggle
     } from "@sveltestrap/sveltestrap";
-    import type {GearPurifyCategory} from "../types/gearTypes";
-    import {createGearPurifyCategoryMap} from "../types/gearTypes";
+    import type {GearPurifyCategory} from "../types/gearCategoryTypes";
+    import {createGearPurifyCategoryMap} from "../types/gearCategoryTypes";
     import {abilityNameParams} from "../../assets/translationParams";
     import {type SubAbility} from "wasm-splatoon-gear-checker";
     import DisplayAllGearRows from "../DisplayAllGearRows/DisplayAllGearRows.svelte";

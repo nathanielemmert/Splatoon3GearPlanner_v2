@@ -27,8 +27,8 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
         GearPurifyCategory,
         GearPurifyCategoryId,
         NamedGearCategory
-    } from "../../types/gearTypes";
-    import {createGearPurifyCategoryMap} from "../../types/gearTypes";
+    } from "../../types/gearCategoryTypes";
+    import {createGearPurifyCategoryMap} from "../../types/gearCategoryTypes";
     import {gearNameParams} from "../../../assets/translationParams";
     import type {GearInputState} from "../../stores/createGear.svelte";
     import * as uuid from "uuid"
@@ -61,14 +61,20 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
     function removeGearFromCategory(gearInputState:GearInputState, gearPurifyCategory_unused:GearPurifyCategory|null){
 
 
-        batch(()=>{
+        // batch(()=>{
             if($gearPurifyCategory==null)return;
             $gearPurifyCategory.containedGear = $gearPurifyCategory.containedGear.filter((i)=>(i!==gearInputState))
 
-            $gearPurifyCategory=null;
+            //2/26/2026: Changing this line is what fixed my state issues. gearInputState.gearPurifyCategory.set(null) should be equivalent to setting $gearPurifyCategory=null. 
+            //                  However, with $gearPurifyCategory=null, it would remove the correct gear from gearPurifyCategory.containedGear.
+            //                  Then, it would set gearPurifyCategory=null in the gear BELOW it in the list.
+            //                  So it would cause a mismatch between category.containedGear and gear.Category. 
+            //                  A gear with a null category would be in containedGear, and a gear with correct category would be missing from containedGear.
+            gearInputState.gearPurifyCategory.set(null)//$gearPurifyCategory=null; 
+            
 
 
-        })
+        // })
         allGearCategories=allGearCategories;
         allGearCategoriesMap=allGearCategoriesMap;
 

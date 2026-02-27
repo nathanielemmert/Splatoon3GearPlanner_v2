@@ -106,7 +106,8 @@ export function createGear(gearInfo:GearInfo){
     ,{summary: {},single_gear_result:[]})
     single_gear_result.subscribe(()=>console.log("single_gear_result"))
 
-    return {
+    //2/26/2026: I just wrapped this object in state, but i dont think it needs to be wrapped in state.
+    let ret = $state({
         RowId,
         gearInfo,
         gearPurifyCategory:writable<GearPurifyCategory|null>(null),
@@ -128,5 +129,6 @@ export function createGear(gearInfo:GearInfo){
         computed_desired_abilities,
         single_gear_result,
         wasmGear,
-    }
+    })
+    return ret;
 }

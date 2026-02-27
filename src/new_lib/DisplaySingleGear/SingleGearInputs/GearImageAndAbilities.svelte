@@ -5,7 +5,7 @@
     import {type Writable} from "svelte/store";
     import {type GearSeedDatabase} from "../../types/typesLeanny";
     import {type GearType} from "../../types/gearTypes";
-    import { getContext_userGearDatabase } from "@/new_lib/stores/contexts.svelte";
+    import { getContext_userGearDatabase } from "../../stores/contexts.svelte";
 
     interface Props {
         gearType: GearType;

@@ -1,6 +1,6 @@
 <script lang="ts">
 import {Button} from "@sveltestrap/sveltestrap";
-import {createGearPurifyCategoryMap,  type GearPurifyCategory} from "../types/gearTypes";
+import {createGearPurifyCategoryMap,  type GearPurifyCategory} from "../types/gearCategoryTypes";
 import {Gear, GearCategory, GearPurifier, type MultiGearResult} from "wasm-splatoon-gear-checker";
 import {DEFAULT_ALLOWED_DRINKS} from "../types/helperFunctions";
 import MultiGearResultTable from "../MultiGearResultTable/MultiGearResultTable.svelte";

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type {GearPurifyCategory} from "../../types/gearTypes";
+    import type {GearPurifyCategory} from "../../types/gearCategoryTypes";
     import MainAbilityImage from "../MainAbilityImage.svelte";
     import SubAbilityImage from "../SubAbilityImage.svelte";
     import SmallSubAbilityImages from "../SmallSubAbilityImages.svelte";

@@ -1,7 +1,9 @@
 <script lang="ts">
     import {SubAbility, Ticket} from "wasm-splatoon-gear-checker";
     import {type GearSeedDatabase} from "./types/typesLeanny";
-    import {createGearPurifyCategoryMap, type GearInfo, type GearPurifyCategory, GearType} from "./types/gearTypes";
+    import {type GearInfo, GearType} from "./types/gearTypes";
+    import {createGearPurifyCategoryMap,type GearPurifyCategory} from "./types/gearCategoryTypes";
+    
     // import VirtualTable from 'svelte-virtual-table'
     import DisplayGearCategories from "./DisplayGearCategories/DisplayGearCategories.svelte";
     import PurifyAllGear from "./PurifyAllGear/PurifyAllGear.svelte";
@@ -132,7 +134,7 @@
         {#snippet trow( item, index )}
             
                 {@const {gearInputState,rowType} = item}
-                <DisplaySingleGearRow {gearInputState} {rowType} bind:allGearCategoriesMap bind:allGearCategories bind:global_desired_abilities hidden={index==-1} />
+                <DisplaySingleGearRow bind:gearInputState={item.gearInputState} {rowType} bind:allGearCategoriesMap bind:allGearCategories bind:global_desired_abilities hidden={index==-1} />
                 <!-- TODO: Would it make more sense to pass allGearCategoriesMap and allGearCategories as setContext() instead of prop drilling? -->
 
         {/snippet}

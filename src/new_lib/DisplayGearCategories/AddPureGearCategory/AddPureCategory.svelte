@@ -15,9 +15,9 @@
     import {
         createGearPurifyCategoryMap,
         type GearPurifyCategory, type GearPurifyCategoryId,
-        GearType,
         type PureGearCategory
-    } from "../../types/gearTypes";
+    } from "../../types/gearCategoryTypes";
+    import {GearType} from "../../types/gearTypes"
     import {LeannySubAbility} from "wasm-splatoon-gear-checker";
     import InputGearType from "../Inputs/InputGearType.svelte";
     import InputSubAbility from "../Inputs/InputSubAbility.svelte";
@@ -66,7 +66,8 @@
     });
 
     function createPureGearCategory(auto_add:boolean){
-        let newCategory:PureGearCategory = {type: "pure", gearType, subAbility, containedGear:[]}; //TODO: ContainedGear needs to be more reactive. When i remove gear from category, DisplaySingleGearCategory should rerender
+        let containedGearState = $state([])
+        let newCategory:PureGearCategory = $state({type: "pure", gearType, subAbility, containedGear:containedGearState}); //TODO: ContainedGear needs to be more reactive. When i remove gear from category, DisplaySingleGearCategory should rerender
         if(allGearCategoriesMap.pure.get(gearType)?.get(subAbility)==null){
             allGearCategoriesMap.pure.get(gearType)?.set(subAbility,newCategory)
             allGearCategoriesMap=allGearCategoriesMap;

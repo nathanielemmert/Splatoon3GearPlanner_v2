@@ -4,8 +4,8 @@
         GearPurifyCategory,
         GearPurifyCategoryId,
         NamedGearCategory
-    } from "../../types/gearTypes";
-    import {createGearPurifyCategoryMap} from "../../types/gearTypes";
+    } from "../../types/gearCategoryTypes";
+    import {createGearPurifyCategoryMap} from "../../types/gearCategoryTypes";
     import {abilityNameParams, gearNameParams} from "../../../assets/translationParams";
     import type {GearInputState} from "../../stores/createGear.svelte";
     import * as uuid from "uuid"

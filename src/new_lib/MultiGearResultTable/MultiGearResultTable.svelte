@@ -1,6 +1,6 @@
 <script lang="ts">
     import type {MultiGearResult} from "wasm-splatoon-gear-checker";
-    import type {GearInputState, GearPurifyCategory} from "../types/gearTypes";
+    import type {GearInputState, GearPurifyCategory} from "../types/gearCategoryTypes";
     import {Button, Card, CardBody, CardHeader, Table} from "@sveltestrap/sveltestrap";
     import DisplayTicketComboPurifyResult from "./DisplayTicketComboPurifyResult.svelte";
     import TicketComboImages from "../ImageTypes/TicketComboImages.svelte";

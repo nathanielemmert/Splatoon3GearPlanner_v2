@@ -3,7 +3,7 @@ https://svelte.dev/e/each_item_invalid_assignment -->
 <script lang="ts">
 
     import type {SubAbility} from "wasm-splatoon-gear-checker";
-    import {createGearPurifyCategoryMap, type GearPurifyCategory} from "../types/gearTypes";
+    import {createGearPurifyCategoryMap, type GearPurifyCategory} from "../types/gearCategoryTypes";
     import type {GearInputState} from "../stores/createGear.svelte";
     import DisplaySingleGearRow from "./DisplaySingleGearRow.svelte";
 
@@ -24,6 +24,6 @@ https://svelte.dev/e/each_item_invalid_assignment -->
 </script>
 
 
-{#each allDisplayedGear as gearInputState ,i}<!--(gearInputState.RowId)-->
+{#each allDisplayedGear as gearInputState ,i (gearInputState.RowId)}<!--(gearInputState.RowId)-->
     <DisplaySingleGearRow bind:gearInputState={allDisplayedGear[i]} bind:allGearCategoriesMap bind:allGearCategories bind:global_desired_abilities />
 {/each}

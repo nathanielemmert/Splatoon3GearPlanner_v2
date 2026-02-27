@@ -27,7 +27,7 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
     import InputMaxChunks from "../DisplaySingleGear/SingleGearInputs/InputMaxChunks.svelte";
     import DisplaySingleGear from "../DisplaySingleGear/DisplaySingleGear.svelte";
     import InputGearPurifyCategory from "../DisplaySingleGear/SingleGearInputs/InputGearPurifyCategory.svelte";
-    import {createGearPurifyCategoryMap, type GearPurifyCategory} from "../types/gearTypes";
+    import {createGearPurifyCategoryMap, type GearPurifyCategory} from "../types/gearCategoryTypes";
     import {type SubAbility} from "wasm-splatoon-gear-checker";
     import InputGearPurifyCategoryNostore
         from "../DisplaySingleGear/SingleGearInputs/InputGearPurifyCategoryNostore.svelte";
@@ -96,6 +96,7 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
         console.log($hideResultTable)
     });
 
+
 </script>
 
 {#if rowType=="first"||rowType==null}
@@ -113,7 +114,7 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
                             bind:allGearCategories
                             bind:allGearCategoriesMap
                             bind:gearInputState
-                            bind:gearPurifyCategory={gearPurifyCategory}
+                            bind:gearPurifyCategory
                     />
                 </div>
                     {/snippet}
