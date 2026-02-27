@@ -56,9 +56,9 @@
                             </Button>
                             <DropdownToggle split color="primary" />
                             <DropdownMenu>
-                                <DropdownItem>Add Unselected Gear</DropdownItem>
+                                <DropdownItem disabled>Add Unselected Gear</DropdownItem>
                                 <DropdownItem divider/>
-                                <DropdownItem>Delete Category</DropdownItem>
+                                <DropdownItem disabled>Delete Category</DropdownItem>
                             </DropdownMenu>
                         </ButtonDropdown>
                     </div>
