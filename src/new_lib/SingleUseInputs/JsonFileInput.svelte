@@ -1,7 +1,8 @@
 <script lang="ts">
     import { GearDbSchema, GearSeedDatabaseSchema, type GearSeedDatabase } from "../types/typesLeanny";
 
-    import ExampleFileJson from "../../assets/gear_seed_database_2023-12-15_21-37-10.json"
+    import ExampleFileJson from "../../assets/gear_seed_database_2026-02-27_18-56-43.json"
+    
     import {Button} from "@sveltestrap/sveltestrap";
 /*    import Ajv from "ajv/dist/jtd"
     import typesLeannySchema from "../types/typesLeannySchema.json"

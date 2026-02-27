@@ -67,13 +67,12 @@
 
     function createPureGearCategory(auto_add:boolean){
         let containedGearState = $state([])
-        let newCategory:PureGearCategory = $state({type: "pure", gearType, subAbility, containedGear:containedGearState}); //TODO: ContainedGear needs to be more reactive. When i remove gear from category, DisplaySingleGearCategory should rerender
+        let newCategory:PureGearCategory = $state({type: "pure", gearType, subAbility, containedGear:containedGearState});
         if(allGearCategoriesMap.pure.get(gearType)?.get(subAbility)==null){
             allGearCategoriesMap.pure.get(gearType)?.set(subAbility,newCategory)
             allGearCategoriesMap=allGearCategoriesMap;
 
             allGearCategories.push(newCategory)
-            allGearCategories=allGearCategories;
         }
         if(auto_add){
             console.log("AUTO ADD");
@@ -143,8 +142,15 @@ Onsubmit, set gear.category to the category, and add gear rowId to the category.
 
     </ModalBody>
     <ModalFooter>
-            <Button color="primary" disabled={!validInput} on:click={()=>createPureGearCategory(true)}>Create category & add all gear</Button>
-            <Button color="primary" disabled={!validInput} on:click={()=>createPureGearCategory(false)}>Create empty category</Button><br/>
+            <div style:margin-right={"auto"}> <!-- margin-right overrides the right alignment of modal footer to make this div left aligned. -->
+                OR: Manually Select Main/Sub:
+            </div>
+            (TODO: Add Main/sub input here on next line)
+            <div>
+                <Button color="primary" disabled={!validInput} on:click={()=>createPureGearCategory(true)}>Create category & add all gear</Button>
+                <Button color="primary" disabled={!validInput} on:click={()=>createPureGearCategory(false)}>Create empty category</Button><br/>
+            </div>
+            
             <Button color="secondary" on:click={toggle}>Cancel</Button><br/>
     </ModalFooter>
 </Modal>
