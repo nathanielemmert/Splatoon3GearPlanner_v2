@@ -1,12 +1,13 @@
-import type { SubAbility } from "wasm-splatoon-gear-checker/pkg/wasm_splatoon_gear_checker";
+import type { MainAbility, SubAbility } from "wasm-splatoon-gear-checker";
 import { GearType } from "./gearTypes";
 import type { GearInputState } from "../stores/createGear.svelte";
 
 export type PureGearCategory = {
     type:"pure",
-    id:string,
+    //id:string,
     gearType:GearType,
-    subAbility:SubAbility,
+    mainAbility:MainAbility,
+    subAbilities:[SubAbility, SubAbility, SubAbility]
     containedGear:GearInputState[]
 
 };
@@ -20,7 +21,7 @@ export type NamedGearCategory = {
 export type GearPurifyCategory = PureGearCategory | NamedGearCategory
 export type GearPurifyCategoryType = GearPurifyCategory["type"]
 
-export type GearPurifyCategoryId = Pick<PureGearCategory, "type"|"gearType"|"subAbility"> | Pick<NamedGearCategory, "type"|"name">
+//export type GearPurifyCategoryId = Pick<PureGearCategory, "type"|"gearType"|"subAbility"> | Pick<NamedGearCategory, "type"|"name">
 
 
 export function createGearPurifyCategoryMap(

@@ -2,7 +2,7 @@
     import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from "@sveltestrap/sveltestrap";
     import type {
         GearPurifyCategory,
-        GearPurifyCategoryId,
+
         NamedGearCategory
     } from "../../types/gearCategoryTypes";
     import {createGearPurifyCategoryMap} from "../../types/gearCategoryTypes";

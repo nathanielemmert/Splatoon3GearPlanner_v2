@@ -12,9 +12,9 @@
 </script>
 
 {#if gearPurifyCategory.type==="pure"}
-    {@const a = gearPurifyCategory.subAbility}
-    <SubAbilityImage abilityId={a}/>
-    <SmallSubAbilityImages abilityIds={[a,a,a]}/>
+{@const {mainAbility, subAbilities}=gearPurifyCategory}
+    <MainAbilityImage abilityId={mainAbility}/>
+    <SmallSubAbilityImages abilityIds={subAbilities}/>
     {gearPurifyCategory.gearType}
 {:else if gearPurifyCategory.type==="named"}
     {gearPurifyCategory.name}

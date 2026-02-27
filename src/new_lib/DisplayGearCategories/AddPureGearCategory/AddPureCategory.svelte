@@ -14,11 +14,11 @@
     } from "@sveltestrap/sveltestrap";
     import {
         createGearPurifyCategoryMap,
-        type GearPurifyCategory, type GearPurifyCategoryId,
+        type GearPurifyCategory, 
         type PureGearCategory
     } from "../../types/gearCategoryTypes";
     import {GearType} from "../../types/gearTypes"
-    import {LeannySubAbility} from "wasm-splatoon-gear-checker";
+    import {LeannySubAbility,MainAbility,SubAbility} from "wasm-splatoon-gear-checker";
     import InputGearType from "../Inputs/InputGearType.svelte";
     import InputSubAbility from "../Inputs/InputSubAbility.svelte";
     import {gearInfoParams as gearInfoParams} from "../../../assets/gearInfoParams";
@@ -31,11 +31,7 @@
     import SelectPureCategory from "./SelectPureCategory.svelte";
     import type {GearInputState} from "../../stores/createGear.svelte";
     import {batch} from "@amadeus-it-group/tansu";
-
-
-
-    let gearType:GearType=$state(null);
-    let subAbility:LeannySubAbility=$state(LeannySubAbility.None);
+    import InputMainAbility from "../../SingleUseInputs/InputMainAbility.svelte"
 
 
     interface Props {
@@ -52,24 +48,47 @@
         open = $bindable()
     }: Props = $props();
 
+    const blank_ability_combo = [LeannySubAbility.None, LeannySubAbility.None, LeannySubAbility.None] as const;
+
+
+    let gearType:GearType=$state(null);
+    let pureSubAbility:LeannySubAbility=$state(LeannySubAbility.None);
+
+    let mainAbility:MainAbility=$state(MainAbility.ComeBack);
+    let subAbilities:[LeannySubAbility,LeannySubAbility,LeannySubAbility] = $state([...blank_ability_combo])
+
+    // If i click on a gearType in the pure section, it should set gearType on the bottom, and the sub abilities on the bottom.
+    // If i set a gearType on the bottom, it should set a gearType on the top.
+    // If i set the sub Abilities on the bottom, it should set pureSubAbility on the top (if the entered sub abilities happen to be pure)
+    //
+    // Ideally, the pureSubAbility variable would be removed, and all logic would only deal with [A,A,A] instead of A.
+
+
     
     const toggle = ()=>{
         open=!open
         if(!open){
             gearType=null;
-            subAbility=LeannySubAbility.None;
+            pureSubAbility=LeannySubAbility.None;
         }
     };
-    let validInput = $derived(gearType!=null && subAbility!=LeannySubAbility.None)
+    let validInput = $derived(gearType!=null && pureSubAbility!=LeannySubAbility.None)
     run(() => {
-        console.log(gearType,subAbility,validInput)
+        console.log(gearType,pureSubAbility,validInput)
     });
 
     function createPureGearCategory(auto_add:boolean){
-        let containedGearState = $state([])
-        let newCategory:PureGearCategory = $state({type: "pure", gearType, subAbility, containedGear:containedGearState});
-        if(allGearCategoriesMap.pure.get(gearType)?.get(subAbility)==null){
-            allGearCategoriesMap.pure.get(gearType)?.set(subAbility,newCategory)
+        let containedGearState = $state([] as GearInputState[])
+        let _pureSubAbility = pureSubAbility as unknown as SubAbility
+        let newCategory:PureGearCategory = $state({
+            type: "pure", 
+            gearType, 
+            mainAbility:_pureSubAbility as unknown as MainAbility,
+            subAbilities:[_pureSubAbility,_pureSubAbility,_pureSubAbility],
+             containedGear:containedGearState
+        });
+        if(allGearCategoriesMap.pure.get(gearType)?.get(_pureSubAbility)==null){
+            allGearCategoriesMap.pure.get(gearType)?.set(_pureSubAbility,newCategory)
             allGearCategoriesMap=allGearCategoriesMap;
 
             allGearCategories.push(newCategory)
@@ -82,7 +101,7 @@
     }
 
 
-    function addAllGearToCategory(newCategory:GearPurifyCategory){batch(()=>{
+    function addAllGearToCategory(newCategory:PureGearCategory){batch(()=>{
             console.log("STARTED ADDING",allDisplayedGear)
             let x = 0
             for(const gearInputState of allDisplayedGear) {
@@ -91,21 +110,27 @@
                    gearPurifyCategory, single_gear_result, gearInfo,
                    desired_abilities_info:{enable_all_global,show_all_global,local_desired_abilities_map,local_desired_abilities}
                } = gearInputState;
+               if(gearInfo.gear.MainSkill == newCategory.mainAbility){
+                    console.log(MainAbility[gearInfo.gear.MainSkill],gearInputState)
+               }
 
                if(gearPurifyCategory()!=null){continue;}
                if(gearInfo.gearType!=gearType){continue;}
                 if(gearInfo.gear.RandomContext==0){continue;}
-               if(gearInfo.gear.MainSkill!=subAbility){continue;}
-               if(single_gear_result().summary[[subAbility,subAbility,subAbility]]==null){continue;}
+               if(gearInfo.gear.MainSkill!=newCategory.mainAbility){continue;}
+               if(single_gear_result().summary[newCategory.subAbilities]==null){continue;}
 
 
                newCategory.containedGear.push(gearInputState);newCategory.containedGear=newCategory.containedGear;
                gearPurifyCategory.set(newCategory);
-               //TODO: DISABLE ALL GLOBAL DESIRED ABILITIES OF THE GEAR. SET LOCAL ONES TO ONLY BE 3 IN A ROW OF THE MAIN ABILITY.
+               // DISABLE ALL GLOBAL DESIRED ABILITIES OF THE GEAR. SET LOCAL ONES TO ONLY BE 3 IN A ROW OF THE MAIN ABILITY.
+               // TODO: the removeGearFromCategory() function should UNDO these changes. 
+
                enable_all_global.set(false);
                show_all_global.set(false);
+               //TODO: Maybe instead of overwriting the local desired abilities, I could just disable them all, and add the category sub abilities as the only enabled local desired ability.
                local_desired_abilities_map.set( OrderedMap())
-               local_desired_abilities.set([[subAbility,subAbility,subAbility]])
+               local_desired_abilities.set([newCategory.subAbilities])
             }
             console.log(newCategory)
     });console.log("FINISHED ADDING");}
@@ -135,17 +160,17 @@ Onsubmit, set gear.category to the category, and add gear rowId to the category.
     <ModalHeader {toggle}>Add PURE Category</ModalHeader>
     <ModalBody>
         <h4 class="mt-3">Not Created Yet:</h4>
-        <SelectPureCategory bind:subAbility {allGearCategoriesMap} bind:gearType/>
+        <SelectPureCategory bind:subAbility={pureSubAbility} {allGearCategoriesMap} bind:gearType/>
 
         <h4 class="mt-3">Already Created:</h4>
-        <SelectPureCategory bind:subAbility bind:gearType {allGearCategoriesMap} alreadyCreated/>
+        <SelectPureCategory bind:subAbility={pureSubAbility} bind:gearType {allGearCategoriesMap} alreadyCreated/>
 
     </ModalBody>
     <ModalFooter>
             <div style:margin-right={"auto"}> <!-- margin-right overrides the right alignment of modal footer to make this div left aligned. -->
                 OR: Manually Select Main/Sub:
             </div>
-            (TODO: Add Main/sub input here on next line)
+            <InputMainAbility bind:abilityId={mainAbility}/>
             <div>
                 <Button color="primary" disabled={!validInput} on:click={()=>createPureGearCategory(true)}>Create category & add all gear</Button>
                 <Button color="primary" disabled={!validInput} on:click={()=>createPureGearCategory(false)}>Create empty category</Button><br/>

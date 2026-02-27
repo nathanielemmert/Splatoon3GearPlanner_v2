@@ -1,4 +1,4 @@
-import {LeannyDrink, LeannySubAbility, SubAbility, Ticket} from "wasm-splatoon-gear-checker/wasm_splatoon_gear_checker"
+import {LeannyDrink, LeannySubAbility, SubAbility, Ticket} from "wasm-splatoon-gear-checker"
 
 
 export function transformLeannyDrinkIntoTicket(drink:LeannyDrink):Ticket{

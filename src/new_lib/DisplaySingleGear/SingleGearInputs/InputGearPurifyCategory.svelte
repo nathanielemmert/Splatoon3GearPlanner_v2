@@ -25,7 +25,7 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
     import {Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle} from "@sveltestrap/sveltestrap";
     import type {
         GearPurifyCategory,
-        GearPurifyCategoryId,
+
         NamedGearCategory
     } from "../../types/gearCategoryTypes";
     import {createGearPurifyCategoryMap} from "../../types/gearCategoryTypes";
@@ -78,7 +78,10 @@ https://svelte.dev/e/store_invalid_scoped_subscription -->
         allGearCategories=allGearCategories;
         allGearCategoriesMap=allGearCategoriesMap;
 
-    }
+        // added 2026, to undo changes made in addGearToCategory(). Im not sure if it is correct for me to do this.
+        gearInputState.desired_abilities_info.enable_all_global.set(true);
+        gearInputState.desired_abilities_info.show_all_global.set(true);
+}
 
     //TODO: all references to $gearPurifyCategory in this function should be replaced by gearPurifyCategory_unused
     //This is the reason why "add gear to solo category" feature doesnt work.
