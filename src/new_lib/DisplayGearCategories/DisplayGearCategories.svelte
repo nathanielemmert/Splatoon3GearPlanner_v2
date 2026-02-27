@@ -47,7 +47,7 @@
                 <ButtonDropdown>
                     <DropdownToggle color="primary" caret>Add new Category</DropdownToggle>
                     <DropdownMenu>
-                        <DropdownItem>Add Named Category</DropdownItem>
+                        <DropdownItem disabled>Add Named Category</DropdownItem>
                         <DropdownItem divider/>
                         <DropdownItem on:click={()=>{modalOpen=true}}>Add PURE category</DropdownItem>
                     </DropdownMenu>
