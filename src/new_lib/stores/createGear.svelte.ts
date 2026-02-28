@@ -71,13 +71,18 @@ export function createGear(gearInfo:GearInfo){
                 }
             }
             let new_desired_abilities:SubAbility[][]  = [...x].map(i=>JSON.parse(i));
-            return new_desired_abilities
+            // wasmGear.desired_abilities=new_desired_abilities;// remove this line
+            return new_desired_abilities;
         });
 
 
     max_allowed_chunks.subscribe((value)=>{wasmGear.max_allowed_chunks=value});
     local_how_far_to_check.subscribe((value)=>{wasmGear.how_far_to_check=value});
+    // I had to put wasmGear.desired_abilities=value in the computed_desired_abiliities derive() function, because it wasnt being synchronously updated for some reason. 
+    // I would call local_desired_abilities.set() and then computed_desired_abilitiees() would immediately update. 
+    // However, wasmGear.desired_abilities would NOT immediately update, so the subscription obviously wasnt being called right away.
     computed_desired_abilities.subscribe((value)=>{wasmGear.desired_abilities=value});
+    computed_desired_abilities.subscribe(()=>console.log(RowId,"Computed desired abilities"))
 
     let dont_recompute_initial_value=false;
     //TODO: i want one singular optimized webworker that inputs all of the wasmGear, and outputs an array of single_gear_results.

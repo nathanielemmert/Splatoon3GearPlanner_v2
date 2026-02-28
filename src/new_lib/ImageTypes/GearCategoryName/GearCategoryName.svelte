@@ -3,6 +3,8 @@
     import MainAbilityImage from "../MainAbilityImage.svelte";
     import SubAbilityImage from "../SubAbilityImage.svelte";
     import SmallSubAbilityImages from "../SmallSubAbilityImages.svelte";
+    import SmallMainAbilityImage from "../SmallMainAbilityImage.svelte";
+    import SubAbilityImages from "../SubAbilityImages.svelte";
 
     interface Props {
         gearPurifyCategory: GearPurifyCategory;
@@ -14,7 +16,7 @@
 {#if gearPurifyCategory.type==="pure"}
 {@const {mainAbility, subAbilities}=gearPurifyCategory}
     <MainAbilityImage abilityId={mainAbility}/>
-    <SmallSubAbilityImages abilityIds={subAbilities}/>
+    <SubAbilityImages abilityIds={subAbilities}/>
     {gearPurifyCategory.gearType}
 {:else if gearPurifyCategory.type==="named"}
     {gearPurifyCategory.name}
